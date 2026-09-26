@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rally Board Interactive Desktop</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/webp" href="assets/logos/rally-logo.webp">
+</head>
+<body class="mac-desktop-theme">
+
+  <!-- RLY-D001: Main Desktop Container -->
+  <div id="RLY-D001" class="desktop-container">
+
+    <!-- RLY-D002: Desktop Background Wallpaper Layer -->
+    <div id="RLY-D002" class="desktop-background" style="background-image: url('assets/backgrounds/desktop-background.jpeg');">
+      <div class="background-overlay"></div>
+    </div>
+
+    <!-- RLY-T001: Top Navigation Bar -->
+    <header id="RLY-T001" class="top-bar">
+      <div class="top-bar-left">
+        <!-- RLY-L001: Rally Logo Button -->
+        <button id="RLY-L001" class="logo-btn" aria-label="Rally Menu" aria-expanded="false">
+          <img src="assets/logos/rally-logo.webp" alt="Rally Logo" class="logo-img">
+          <span class="logo-text">Rally</span>
+        </button>
+
+        <!-- RLY-MN001: Dropdown Menu -->
+        <nav id="RLY-MN001" class="dropdown-menu hidden" aria-hidden="true">
+          <a id="RLY-B001" href="#" target="_blank" rel="noopener" class="menu-item">
+            <span class="menu-icon">📘</span> <span class="menu-label" data-key="facebook">Facebook</span>
+          </a>
+          <a id="RLY-B002" href="#" target="_blank" rel="noopener" class="menu-item">
+            <span class="menu-icon">🎵</span> <span class="menu-label" data-key="tiktok">TikTok</span>
+          </a>
+          <a id="RLY-B003" href="#" target="_blank" rel="noopener" class="menu-item">
+            <span class="menu-icon">📸</span> <span class="menu-label" data-key="instagram">Instagram</span>
+          </a>
+          <a id="RLY-B004" href="#" target="_blank" rel="noopener" class="menu-item">
+            <span class="menu-icon">💬</span> <span class="menu-label" data-key="whatsappGroup">WhatsApp Group</span>
+          </a>
+          <div class="menu-divider"></div>
+          <button id="RLY-LC001" class="menu-item btn-menu">
+            <span class="menu-icon">ℹ️</span> <span class="menu-label" data-key="attribution">Attribution</span>
+          </button>
+          <a id="RLY-C001" href="#" class="menu-item">
+            <span class="menu-icon">✉️</span> <span class="menu-label" data-key="email">Email Us</span>
+          </a>
+          <a id="RLY-C002" href="#" target="_blank" rel="noopener" class="menu-item">
+            <span class="menu-icon">📱</span> <span class="menu-label" data-key="whatsappContact">Contact WhatsApp</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="top-bar-center">
+        <!-- RLY-MS001: Center Announcement Banner -->
+        <a id="RLY-MS001" href="#" target="_blank" rel="noopener" class="announcement-banner">
+          <span id="announcement-text" class="announcement-text">⚡ Loading Announcement...</span>
+        </a>
+      </div>
+
+      <div class="top-bar-right">
+        <!-- RLY-S001: Season Indicator -->
+        <div id="RLY-S001" class="season-badge">
+          <span class="season-icon">📅</span>
+          <span id="season-text" class="season-text">16 / 09 / 2026 → 16 / 09 / 2027</span>
+        </div>
+
+        <!-- RLY-N001: Notification Trigger -->
+        <button id="RLY-N001" class="notification-trigger" aria-label="Notifications">
+          <span class="bell-icon">🔔</span>
+          <span class="notification-dot"></span>
+        </button>
+
+        <!-- RLY-LG001: Language Switcher -->
+        <button id="RLY-LG001" class="language-switch-btn" aria-label="Switch Language">
+          <span id="lang-indicator" class="lang-text">AR / EN</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- RLY-NP001: Auto-Rotating Notification Panel -->
+    <aside id="RLY-NP001" class="notification-popup hidden" aria-live="polite">
+      <div class="notification-header">
+        <span class="notification-tag" id="notification-badge">NEW</span>
+        <button id="notification-close-btn" class="close-icon-btn" aria-label="Close notification">×</button>
+      </div>
+      <a id="notification-link" href="#" target="_blank" rel="noopener" class="notification-body">
+        <h4 id="notification-title" class="notification-title">Notification Title</h4>
+        <p id="notification-desc" class="notification-desc">Notification details description goes here...</p>
+      </a>
+      <div class="notification-progress-bar">
+        <div id="notification-progress" class="progress-fill"></div>
+      </div>
+    </aside>
+
+    <!-- Desktop Desktop Folders Grid -->
+    <main class="folders-grid">
+      <!-- Folder 01 -->
+      <button id="RLY-F001" class="folder-item" data-window="RLY-W001">
+        <div class="folder-icon-wrapper">
+          <div class="folder-icon">📁</div>
+        </div>
+        <span class="folder-label" data-folder="0">Committee 01</span>
+      </button>
+
+      <!-- Folder 02 -->
+      <button id="RLY-F002" class="folder-item" data-window="RLY-W002">
+        <div class="folder-icon-wrapper">
+          <div class="folder-icon">📁</div>
+        </div>
+        <span class="folder-label" data-folder="1">Committee 02</span>
+      </button>
+
+      <!-- Folder 03 -->
+      <button id="RLY-F003" class="folder-item" data-window="RLY-W003">
+        <div class="folder-icon-wrapper">
+          <div class="folder-icon">📁</div>
+        </div>
+        <span class="folder-label" data-folder="2">Committee 03</span>
+      </button>
+
+      <!-- Folder 04 -->
+      <button id="RLY-F004" class="folder-item" data-window="RLY-W004">
+        <div class="folder-icon-wrapper">
+          <div class="folder-icon">📁</div>
+        </div>
+        <span class="folder-label" data-folder="3">Committee 04</span>
+      </button>
+
+      <!-- Folder 05 -->
+      <button id="RLY-F005" class="folder-item" data-window="RLY-W005">
+        <div class="folder-icon-wrapper">
+          <div class="folder-icon">📁</div>
+        </div>
+        <span class="folder-label" data-folder="4">Committee 05</span>
+      </button>
+
+      <!-- Folder 06 (Board) -->
+      <button id="RLY-F006" class="folder-item folder-board" data-window="RLY-W006">
+        <div class="folder-icon-wrapper">
+          <div class="folder-icon">💼</div>
+        </div>
+        <span class="folder-label" data-folder="5">Board / Managers</span>
+      </button>
+    </main>
+
+    <!-- Dynamic Window Overlay Container -->
+    <div id="window-container" class="window-container"></div>
+
+    <!-- Member Info Modal (Reusable) -->
+    <div id="member-info-modal" class="modal-overlay hidden" aria-hidden="true">
+      <div class="info-card-window">
+        <div class="window-top-bar">
+          <div class="window-controls">
+            <button id="info-close-btn" class="win-btn close" aria-label="Close"></button>
+          </div>
+          <span class="window-title-text" id="info-modal-header-title">Member Info</span>
+        </div>
+        <div class="info-card-content">
+          <div class="info-avatar-box">
+            <img id="info-member-img" src="" alt="Member Photo" class="info-avatar">
+          </div>
+          <div class="info-details">
+            <h3 id="info-member-name" class="member-name">Member Name</h3>
+            <span id="info-member-role" class="member-role-badge">Role Title</span>
+            <p id="info-member-committee" class="member-committee-tag">Committee</p>
+            <p id="info-member-bio" class="member-bio-text">Bio details description...</p>
+            <a id="info-member-link" href="#" target="_blank" rel="noopener" class="btn-primary contact-btn">Contact Member</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Members App List Modal (Reusable) -->
+    <div id="members-app-modal" class="modal-overlay hidden" aria-hidden="true">
+      <div class="app-card-window">
+        <div class="window-top-bar">
+          <div class="window-controls">
+            <button id="app-close-btn" class="win-btn close" aria-label="Close"></button>
+          </div>
+          <span class="window-title-text" id="app-modal-header-title">Members App Directory</span>
+        </div>
+        <div class="app-content-padding">
+          <div class="app-search-box">
+            <input type="text" id="app-search-input" placeholder="Search members..." class="app-search-field">
+          </div>
+          <ul id="app-members-list" class="members-app-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attribution Modal -->
+    <div id="attribution-modal" class="modal-overlay hidden" aria-hidden="true">
+      <div class="info-card-window">
+        <div class="window-top-bar">
+          <div class="window-controls">
+            <button id="attribution-close-btn" class="win-btn close" aria-label="Close"></button>
+          </div>
+          <span class="window-title-text">Attribution</span>
+        </div>
+        <div class="info-card-content attribution-content">
+          <h3>Rally Board Interactive Desktop</h3>
+          <p id="attribution-text-body">Designed & Built for Rally Organization Demo.</p>
+          <p class="attribution-sub">Static macOS-inspired interactive environment.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RLY-K001: Bottom Dock -->
+    <footer id="RLY-K001" class="dock-container">
+      <div class="dock-shelf">
+        <a id="RLY-K002" href="#" target="_blank" rel="noopener" class="dock-item" title="Rally Instagram">
+          <div class="dock-icon instagram-icon">📸</div>
+          <span class="dock-tooltip">Instagram</span>
+        </a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,728 @@
+/* Custom CSS Variables & Design Tokens */
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --bg-topbar: rgba(255, 255, 255, 0.75);
+  --bg-topbar-dark: rgba(20, 24, 33, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-light: #f8fafc;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-gold: #f59e0b;
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --window-border-radius: 18px;
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  font-family: var(--font-family);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #0f172a;
+  color: var(--text-primary);
+}
+
+/* Desktop Main Shell (RLY-D001) */
+.desktop-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Desktop Wallpaper (RLY-D002) */
+.desktop-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(15, 23, 42, 0.3) 100%);
+  pointer-events: none;
+}
+
+/* Top Bar Styling (RLY-T001) */
+.top-bar {
+  position: relative;
+  z-index: 100;
+  height: 38px;
+  background: var(--bg-topbar);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.top-bar-left, .top-bar-right, .top-bar-center {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Rally Logo Button (RLY-L001) */
+.logo-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: var(--transition-fast);
+}
+
+.logo-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.logo-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Dropdown Menu (RLY-MN001) */
+.dropdown-menu {
+  position: absolute;
+  top: 42px;
+  left: 12px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 6px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 200;
+}
+
+html[dir="rtl"] .dropdown-menu {
+  left: auto;
+  right: 12px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: var(--transition-fast);
+}
+
+.btn-menu {
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+html[dir="rtl"] .btn-menu {
+  text-align: right;
+}
+
+.menu-item:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.menu-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 4px 0;
+}
+
+/* Center Announcement Banner (RLY-MS001) */
+.announcement-banner {
+  text-decoration: none;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--color-accent);
+  padding: 4px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-weight: 600;
+  font-size: 12px;
+  transition: var(--transition-fast);
+}
+
+.announcement-banner:hover {
+  background: rgba(37, 99, 235, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Season Badge (RLY-S001) & Controls */
+.season-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.04);
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.notification-trigger, .language-switch-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.notification-trigger:hover, .language-switch-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 7px;
+  height: 7px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+/* Notification Popup Panel (RLY-NP001) */
+.notification-popup {
+  position: fixed;
+  top: 48px;
+  right: 16px;
+  width: 320px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+  padding: 14px;
+  z-index: 300;
+  transition: var(--transition-smooth);
+}
+
+html[dir="rtl"] .notification-popup {
+  right: auto;
+  left: 16px;
+}
+
+.notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.notification-tag {
+  background: var(--color-accent);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.close-icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.notification-body {
+  text-decoration: none;
+  color: var(--text-primary);
+  display: block;
+}
+
+.notification-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.notification-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.notification-progress-bar {
+  height: 3px;
+  width: 100%;
+  background: rgba(0,0,0,0.06);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-accent);
+  transition: width 3s linear;
+}
+
+/* Desktop Folders Grid (RLY-F001 .. RLY-F006) */
+.folders-grid {
+  position: relative;
+  z-index: 10;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-auto-rows: 110px;
+  gap: 24px;
+  max-width: 480px;
+}
+
+.folder-item {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 12px;
+  transition: var(--transition-fast);
+}
+
+.folder-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.folder-icon-wrapper {
+  font-size: 48px;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+}
+
+.folder-label {
+  color: var(--text-light);
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Primary Windows System (RLY-W001 .. RLY-W006) */
+.window-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.mac-window {
+  pointer-events: auto;
+  width: 580px;
+  height: 520px;
+  max-width: 90vw;
+  max-height: 80vh;
+  background: var(--card-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--window-border-radius);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: windowOpen 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes windowOpen {
+  from { opacity: 0; transform: scale(0.92) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.window-top-bar {
+  height: 40px;
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  position: relative;
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.win-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.win-btn.close { background: #ff5f56; border: 1px solid #e0443e; }
+.win-btn.minimize { background: #ffbd2e; border: 1px solid #dea123; }
+.win-btn.maximize { background: #27c93f; border: 1px solid #1aab29; }
+
+.window-title-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.window-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Committee Window Structure */
+.committee-window-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.committee-top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(0,0,0,0.02);
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+
+.committee-art-img {
+  height: 60px;
+  object-fit: contain;
+}
+
+.committee-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-join {
+  background: var(--color-accent);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.btn-join:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-app-icon {
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.btn-app-icon:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+/* Member Stickers Grid & Treatment */
+.stickers-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.sticker-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+/* Subtle random rotations for playful sticker feel */
+.sticker-card:nth-child(1) { transform: rotate(-2deg); }
+.sticker-card:nth-child(2) { transform: rotate(1.5deg); }
+.sticker-card:nth-child(3) { transform: rotate(-1deg); }
+.sticker-card:nth-child(4) { transform: rotate(2deg); }
+
+.sticker-card:hover {
+  transform: scale(1.05) rotate(0deg) translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+  z-index: 20;
+}
+
+.sticker-img-wrapper {
+  width: 100px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.sticker-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sticker-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sticker-title {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Modal Overlays (Member Info, Members App, Attribution) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(6px);
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-card-window, .app-card-window {
+  width: 440px;
+  max-width: 90vw;
+  background: var(--card-bg);
+  border-radius: var(--window-border-radius);
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(255,255,255,0.8);
+  overflow: hidden;
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.info-card-content {
+  padding: 24px;
+  display: flex;
+  gap: 18px;
+}
+
+.info-avatar-box {
+  width: 110px;
+  height: 130px;
+  background: rgba(0,0,0,0.03);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.info-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.info-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.member-name { font-size: 18px; font-weight: 800; }
+.member-role-badge { font-size: 12px; font-weight: 600; color: var(--color-accent); }
+.member-committee-tag { font-size: 11px; color: var(--text-secondary); }
+.member-bio-text { font-size: 12px; color: var(--text-primary); margin-top: 6px; line-height: 1.4; }
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 10px;
+  background: var(--color-accent);
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Members Directory App Modal */
+.app-content-padding { padding: 16px; }
+.app-search-field {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.members-app-list {
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.members-app-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.02);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.attribution-content {
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+/* Dock Styling (RLY-K001) */
+.dock-container {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 12px;
+}
+
+.dock-shelf {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 8px 16px;
+  display: flex;
+  gap: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.dock-item {
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dock-icon {
+  font-size: 32px;
+  transition: var(--transition-fast);
+}
+
+.dock-item:hover .dock-icon {
+  transform: translateY(-8px) scale(1.15);
+}
+
+/* Helper Utility */
+.hidden { display: none !important; }
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .folders-grid {
+    padding: 16px;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .mac-window {
+    width: 95vw;
+    height: 75vh;
+  }
+  .top-bar-center { display: none; }
+}
