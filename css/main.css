@@ -24,9 +24,10 @@
   -webkit-user-select: none;
 }
 
-body {
+html, body {
   font-family: var(--font-family);
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   overflow: hidden;
   background-color: #0f172a;
@@ -38,9 +39,11 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 /* Desktop Wallpaper (RLY-D002) */
@@ -85,6 +88,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 
 /* Rally Logo Button with background plate (RLY-L001) */
@@ -94,6 +98,7 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   padding: 3px 10px !important;
   border-radius: 8px !important;
+  flex-shrink: 0;
 }
 
 .logo-btn {
@@ -102,6 +107,7 @@ body {
   gap: 8px;
   cursor: pointer;
   transition: var(--transition-fast);
+  white-space: nowrap;
 }
 
 .logo-btn:hover {
@@ -112,12 +118,14 @@ body {
   width: 20px;
   height: 20px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .logo-text {
   font-weight: 700;
   color: var(--text-primary);
   font-size: 12px;
+  white-space: nowrap;
 }
 
 /* Dropdown Menu (RLY-MN001) */
@@ -127,11 +135,13 @@ body {
   left: 12px;
   background: var(--card-bg);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   box-shadow: var(--card-shadow);
   padding: 6px;
   width: 240px;
+  max-width: calc(100vw - 24px);
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -179,6 +189,11 @@ html[dir="rtl"] .btn-menu {
 }
 
 /* Center Announcement Banner (RLY-MS001) */
+.top-bar-center {
+  flex: 1;
+  justify-content: center;
+}
+
 .announcement-banner {
   text-decoration: none;
   background: rgba(37, 99, 235, 0.1);
@@ -193,6 +208,8 @@ html[dir="rtl"] .btn-menu {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: inline-block;
+  text-align: center;
 }
 
 .announcement-banner:hover {
@@ -210,6 +227,12 @@ html[dir="rtl"] .btn-menu {
   background: rgba(0, 0, 0, 0.04);
   padding: 3px 8px;
   border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.season-text {
+  white-space: nowrap;
 }
 
 .notification-trigger, .language-switch-btn {
@@ -223,6 +246,8 @@ html[dir="rtl"] .btn-menu {
   color: var(--text-primary);
   transition: var(--transition-fast);
   position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .notification-trigger:hover, .language-switch-btn:hover {
@@ -245,8 +270,10 @@ html[dir="rtl"] .btn-menu {
   top: 48px;
   right: 16px;
   width: 320px;
+  max-width: calc(100vw - 24px);
   background: var(--card-bg);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 14px;
   box-shadow: var(--card-shadow);
@@ -361,6 +388,7 @@ html[dir="rtl"] .notification-popup {
 .desktop-main-area {
   flex: 1;
   position: relative;
+  overflow: hidden;
 }
 
 /* Primary Windows System (RLY-W001 .. RLY-W006) */
@@ -372,14 +400,15 @@ html[dir="rtl"] .notification-popup {
   align-items: center;
   justify-content: center;
   z-index: 50;
+  padding: 8px;
 }
 
 .mac-window {
   pointer-events: auto;
   width: 600px;
   height: 520px;
-  max-width: 90vw;
-  max-height: 80vh;
+  max-width: 100%;
+  max-height: 100%;
   background: var(--card-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -405,12 +434,14 @@ html[dir="rtl"] .notification-popup {
   align-items: center;
   padding: 0 14px;
   position: relative;
+  flex-shrink: 0;
 }
 
 .window-controls {
   display: flex;
   align-items: center;
   gap: 8px;
+  z-index: 2;
 }
 
 .win-btn {
@@ -432,6 +463,10 @@ html[dir="rtl"] .notification-popup {
   font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
 }
 
 .window-body {
@@ -456,6 +491,7 @@ html[dir="rtl"] .notification-popup {
 
 .committee-art-img {
   height: 60px;
+  max-width: 100%;
   object-fit: contain;
 }
 
@@ -475,6 +511,7 @@ html[dir="rtl"] .notification-popup {
   font-weight: 700;
   transition: var(--transition-fast);
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+  white-space: nowrap;
 }
 
 .btn-join:hover {
@@ -491,6 +528,7 @@ html[dir="rtl"] .notification-popup {
   font-size: 12px;
   font-weight: 600;
   transition: var(--transition-fast);
+  white-space: nowrap;
 }
 
 .btn-app-icon:hover {
@@ -565,15 +603,22 @@ html[dir="rtl"] .notification-popup {
   inset: 0;
   background: rgba(15, 23, 42, 0.4);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 400;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .info-card-window, .app-card-window {
   width: 440px;
-  max-width: 90vw;
+  max-width: 100%;
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
+  display: flex;
+  flex-direction: column;
   background: var(--card-bg);
   border-radius: var(--window-border-radius);
   box-shadow: var(--card-shadow);
@@ -591,6 +636,7 @@ html[dir="rtl"] .notification-popup {
   padding: 24px;
   display: flex;
   gap: 18px;
+  overflow-y: auto;
 }
 
 .info-avatar-box {
@@ -602,6 +648,7 @@ html[dir="rtl"] .notification-popup {
   align-items: center;
   justify-content: center;
   padding: 8px;
+  flex-shrink: 0;
 }
 
 .info-avatar {
@@ -615,6 +662,7 @@ html[dir="rtl"] .notification-popup {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
 }
 
 .member-name { font-size: 18px; font-weight: 800; }
@@ -636,7 +684,11 @@ html[dir="rtl"] .notification-popup {
 }
 
 /* Members Directory App Modal */
-.app-content-padding { padding: 16px; }
+.app-content-padding {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+}
 
 .members-app-list {
   list-style: none;
@@ -663,13 +715,15 @@ html[dir="rtl"] .notification-popup {
   text-align: center;
 }
 
-/* Dock Styling (RLY-K001) - Moved Folders Grid into Dock (Total 7 Items) */
+/* Dock Styling (RLY-K001) - Bottom Dock Containing All 6 Folders + Visit Me Browser Icon */
 .dock-container {
   position: relative;
   z-index: 100;
   display: flex;
   justify-content: center;
   padding-bottom: 12px;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 .dock-shelf {
@@ -683,6 +737,14 @@ html[dir="rtl"] .notification-popup {
   align-items: center;
   gap: 14px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  max-width: calc(100vw - 16px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dock-shelf::-webkit-scrollbar {
+  display: none;
 }
 
 .dock-folder-item, .dock-item {
@@ -694,6 +756,7 @@ html[dir="rtl"] .notification-popup {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .dock-icon {
@@ -722,6 +785,7 @@ html[dir="rtl"] .notification-popup {
   transform: translateY(4px);
   transition: var(--transition-fast);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 120;
 }
 
 .dock-folder-item:hover .dock-tooltip, .dock-item:hover .dock-tooltip {
@@ -734,23 +798,224 @@ html[dir="rtl"] .notification-popup {
   height: 32px;
   background: rgba(0, 0, 0, 0.15);
   margin: 0 2px;
+  flex-shrink: 0;
 }
 
 /* Helper Utility */
 .hidden { display: none !important; }
 
-/* Responsive Adjustments for Dock with 7 items */
-@media (max-width: 680px) {
-  .dock-shelf {
+/* ==========================================================================
+   Responsive Adaptations & Media Queries
+   ========================================================================== */
+
+/* Tablet & Intermediate Screen Adjustments (max-width: 900px) */
+@media (max-width: 900px) {
+  .top-bar {
+    padding: 0 10px;
+  }
+  .top-bar-left, .top-bar-center, .top-bar-right {
     gap: 8px;
-    padding: 6px 10px;
+  }
+  .announcement-banner {
+    max-width: 260px;
+  }
+}
+
+/* Tablet / Mobile Screen Adjustments (max-width: 768px) */
+@media (max-width: 768px) {
+  .window-container {
+    top: 40px;
+    bottom: 74px;
+  }
+  .top-bar {
+    padding: 0 8px;
+    font-size: 12px;
+  }
+  .top-bar-left, .top-bar-right {
+    flex-shrink: 0;
+    gap: 6px;
+  }
+  .top-bar-center {
+    min-width: 0;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .logo-plate {
+    padding: 2px 6px !important;
+  }
+  .logo-text {
+    font-size: 11px;
+  }
+  .announcement-banner {
+    max-width: 100%;
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  .season-badge {
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+  .season-text {
+    display: none;
+  }
+  .dock-shelf {
+    gap: 10px;
+    padding: 6px 12px;
   }
   .dock-icon {
-    font-size: 26px;
+    font-size: 28px;
   }
-  .mac-window {
-    width: 95vw;
-    height: 75vh;
+}
+
+/* Small Screen / Smartphone Adjustments (max-width: 520px) */
+@media (max-width: 520px) {
+  .top-bar {
+    padding: 0 6px;
   }
-  .top-bar-center { display: none; }
+  .top-bar-left, .top-bar-right {
+    gap: 4px;
+  }
+  .logo-text {
+    font-size: 10px;
+  }
+  .announcement-banner {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  .season-badge {
+    display: none;
+  }
+  .notification-trigger, .language-switch-btn {
+    padding: 3px 4px;
+    font-size: 11px;
+  }
+  .committee-top-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  .committee-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .btn-join, .btn-app-icon {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+  .stickers-container {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  .sticker-card {
+    padding: 10px 8px;
+  }
+  .sticker-img-wrapper {
+    width: 80px;
+    height: 95px;
+  }
+  .sticker-name {
+    font-size: 12px;
+  }
+  .sticker-title {
+    font-size: 10px;
+  }
+  .window-body {
+    padding: 12px;
+    gap: 12px;
+  }
+  .info-card-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px;
+    gap: 14px;
+  }
+  .info-avatar-box {
+    width: 90px;
+    height: 110px;
+  }
+  .info-details {
+    align-items: center;
+    width: 100%;
+  }
+  .btn-primary.contact-btn {
+    width: 100%;
+  }
+}
+
+/* Narrow Screen Adjustments (max-width: 420px) */
+@media (max-width: 420px) {
+  .dock-shelf {
+    gap: 6px;
+    padding: 5px 8px;
+    border-radius: 18px;
+  }
+  .dock-icon {
+    font-size: 24px;
+  }
+  .dock-divider {
+    height: 24px;
+    margin: 0 1px;
+  }
+  .notification-popup {
+    top: 44px;
+    right: 12px;
+    padding: 12px;
+  }
+  html[dir="rtl"] .notification-popup {
+    right: auto;
+    left: 12px;
+  }
+}
+
+/* Very Narrow Screen Adjustments (max-width: 380px) */
+@media (max-width: 380px) {
+  .logo-text {
+    display: none;
+  }
+  .announcement-banner {
+    max-width: 85px;
+  }
+  .season-text {
+    font-size: 9px;
+  }
+}
+
+/* Height-Aware Landscape Adjustments (max-height: 520px) */
+@media (max-height: 520px) {
+  .window-container {
+    top: 36px;
+    bottom: 56px;
+    padding: 4px;
+  }
+  .dock-container {
+    padding-bottom: 4px;
+  }
+  .dock-shelf {
+    padding: 4px 8px;
+    gap: 6px;
+  }
+  .dock-icon {
+    font-size: 22px;
+  }
+  .window-body {
+    padding: 10px;
+    gap: 10px;
+  }
+  .committee-top-header {
+    padding: 6px 10px;
+  }
+  .committee-art-img {
+    height: 38px;
+  }
+  .stickers-container {
+    gap: 8px;
+  }
+  .sticker-img-wrapper {
+    height: 80px;
+  }
 }
