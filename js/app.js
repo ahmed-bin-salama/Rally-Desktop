@@ -4,9 +4,8 @@ class RallyDesktopApp {
   constructor() {
     this.currentLang = localStorage.getItem('rally_lang') || 'en';
     this.activeWindowId = null;
-    this.notificationIndex = 0;
-    this.notificationTimer = null;
-    this.notificationProgressTimer = null;
+    this.notificationCycleIndex = 0;
+    this.notificationIntervalTimer = null;
 
     this.init();
   }
@@ -14,8 +13,7 @@ class RallyDesktopApp {
   init() {
     this.applyLanguage(this.currentLang);
     this.bindEvents();
-    this.startNotificationRotation();
-    this.renderFolders();
+    this.startNotificationCycle();
     this.updateStaticLinks();
   }
 
@@ -27,26 +25,33 @@ class RallyDesktopApp {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
+    // Update Language Toggle Button
     const langBtnText = document.getElementById('lang-indicator');
     if (langBtnText) {
       langBtnText.textContent = lang === 'ar' ? 'English' : 'العربية';
     }
 
-    // Update announcement
+    // Update Rally Logo Text
+    const logoTextLabel = document.getElementById('logo-text-label');
+    if (logoTextLabel && appData.logoText) {
+      logoTextLabel.textContent = appData.logoText[lang];
+    }
+
+    // Update Center Announcement Banner
     const annText = document.getElementById('announcement-text');
     const annBtn = document.getElementById('RLY-MS001');
     if (annText && appData.announcement) {
       annText.textContent = appData.announcement[lang];
-      if (annBtn) annBtn.href = appData.announcement.url;
+      if (annBtn) annBtn.href = appData.announcement.url || appData.defaultUrl;
     }
 
-    // Update season
+    // Update Season Badge
     const seasonText = document.getElementById('season-text');
     if (seasonText) {
       seasonText.textContent = appData.season;
     }
 
-    // Update menu labels
+    // Update Dropdown Menu Labels
     document.querySelectorAll('.menu-label').forEach(el => {
       const key = el.dataset.key;
       if (key && appData.menuLinks[key]) {
@@ -54,7 +59,7 @@ class RallyDesktopApp {
       }
     });
 
-    // Update folder names
+    // Update Dock Folder Tooltip Labels
     document.querySelectorAll('.folder-label').forEach(el => {
       const folderIdx = parseInt(el.dataset.folder, 10);
       if (!isNaN(folderIdx) && appData.folders[folderIdx]) {
@@ -62,14 +67,17 @@ class RallyDesktopApp {
       }
     });
 
+    // Update Visit Me Tooltip
+    const visitMeTooltip = document.getElementById('visit-me-tooltip');
+    if (visitMeTooltip && appData.dock.visitMe) {
+      visitMeTooltip.textContent = appData.dock.visitMe.label[lang];
+    }
+
     // Re-render active window if open
     if (this.activeWindowId) {
       const folder = appData.folders.find(f => f.windowId === this.activeWindowId);
       if (folder) this.renderWindow(folder);
     }
-
-    // Update notification content
-    this.displayNotification(this.notificationIndex);
   }
 
   toggleLanguage() {
@@ -79,7 +87,7 @@ class RallyDesktopApp {
 
   // Bind UI Event Listeners
   bindEvents() {
-    // Rally Menu Toggle
+    // Rally Logo Menu Toggle
     const logoBtn = document.getElementById('RLY-L001');
     const dropdownMenu = document.getElementById('RLY-MN001');
     if (logoBtn && dropdownMenu) {
@@ -99,8 +107,8 @@ class RallyDesktopApp {
       langBtn.addEventListener('click', () => this.toggleLanguage());
     }
 
-    // Folders Click Events
-    document.querySelectorAll('.folder-item').forEach(folderBtn => {
+    // Dock Folders Click Events
+    document.querySelectorAll('.dock-folder-item').forEach(folderBtn => {
       folderBtn.addEventListener('click', () => {
         const winId = folderBtn.dataset.window;
         const folderData = appData.folders.find(f => f.windowId === winId);
@@ -126,30 +134,37 @@ class RallyDesktopApp {
       attrCloseBtn.addEventListener('click', () => this.closeModal('attribution-modal'));
     }
 
+    const notifModalCloseBtn = document.getElementById('notif-modal-close-btn');
+    if (notifModalCloseBtn) {
+      notifModalCloseBtn.addEventListener('click', () => this.closeModal('notifications-modal'));
+    }
+
     const attrBtn = document.getElementById('RLY-LC001');
     if (attrBtn) {
       attrBtn.addEventListener('click', () => {
         const modal = document.getElementById('attribution-modal');
         const textBody = document.getElementById('attribution-text-body');
+        const headerTitle = document.getElementById('attribution-header-title');
+        if (headerTitle) headerTitle.textContent = appData.menuLinks.attribution.label[this.currentLang];
         if (textBody) textBody.textContent = appData.menuLinks.attribution.text[this.currentLang];
         if (modal) modal.classList.remove('hidden');
       });
     }
 
-    // Notification Panel Manual Controls
+    // Manual Notifications Trigger Button (RLY-N001) -> Opens Full Notifications Modal
     const notifTrigger = document.getElementById('RLY-N001');
-    const notifPanel = document.getElementById('RLY-NP001');
-    const notifClose = document.getElementById('notification-close-btn');
-
-    if (notifTrigger && notifPanel) {
+    if (notifTrigger) {
       notifTrigger.addEventListener('click', () => {
-        notifPanel.classList.toggle('hidden');
+        this.openNotificationsModal();
       });
     }
 
-    if (notifClose && notifPanel) {
+    // Single Toast Popup Close Button
+    const notifClose = document.getElementById('notification-close-btn');
+    if (notifClose) {
       notifClose.addEventListener('click', () => {
-        notifPanel.classList.add('hidden');
+        const notifPanel = document.getElementById('RLY-NP001');
+        if (notifPanel) notifPanel.classList.add('hidden');
       });
     }
   }
@@ -167,22 +182,25 @@ class RallyDesktopApp {
     setUrl('RLY-B004', appData.menuLinks.whatsappGroup.url);
     setUrl('RLY-C001', appData.menuLinks.email.url);
     setUrl('RLY-C002', appData.menuLinks.whatsappContact.url);
-    setUrl('RLY-K002', appData.dock.instagram.url);
+    setUrl('RLY-K002', appData.dock.visitMe.url);
   }
 
-  // Dynamic Notification Auto-Rotation Engine (~10s timer, ~3s display)
-  startNotificationRotation() {
-    const cycle = () => {
-      this.displayNotification(this.notificationIndex);
-      this.notificationIndex = (this.notificationIndex + 1) % appData.notifications.length;
+  // Notification Timing Engine:
+  // 3 Active Notifications (RLY-N101, RLY-N102, RLY-N103)
+  // 0s -> N101 (3s) | 15s -> N102 (3s) | 30s -> N103 (3s) | 45s -> N101 repeat cycle
+  startNotificationCycle() {
+    const cycleNotifications = () => {
+      this.displayNotificationToast(this.notificationCycleIndex);
+      this.notificationCycleIndex = (this.notificationCycleIndex + 1) % 3;
     };
 
-    cycle();
-    this.notificationTimer = setInterval(cycle, 10000);
+    cycleNotifications(); // Trigger immediately at 0s
+    this.notificationIntervalTimer = setInterval(cycleNotifications, 15000); // Repeat every 15s
   }
 
-  displayNotification(index) {
-    const notif = appData.notifications[index];
+  displayNotificationToast(index) {
+    const activeNotifs = appData.notifications.slice(0, 3);
+    const notif = activeNotifs[index];
     if (!notif) return;
 
     const panel = document.getElementById('RLY-NP001');
@@ -195,7 +213,7 @@ class RallyDesktopApp {
     if (title) title.textContent = notif.title[this.currentLang];
     if (desc) desc.textContent = notif.description[this.currentLang];
     if (badge) badge.textContent = notif.badge[this.currentLang];
-    if (link) link.href = notif.url;
+    if (link) link.href = notif.url || appData.defaultUrl;
 
     if (panel) {
       panel.classList.remove('hidden');
@@ -208,24 +226,38 @@ class RallyDesktopApp {
         }, 50);
       }
 
-      // Hide after ~3 seconds
+      // Hide after exactly 3 seconds
       setTimeout(() => {
         if (panel) panel.classList.add('hidden');
-      }, 3500);
+      }, 3000);
     }
   }
 
-  // Folder Rendering
-  renderFolders() {
-    document.querySelectorAll('.folder-label').forEach(el => {
-      const idx = parseInt(el.dataset.folder, 10);
-      if (!isNaN(idx) && appData.folders[idx]) {
-        el.textContent = appData.folders[idx].name[this.currentLang];
-      }
-    });
+  // Open Full Notifications Section Modal
+  openNotificationsModal() {
+    const modal = document.getElementById('notifications-modal');
+    const listContainer = document.getElementById('notifications-list-container');
+    const modalTitle = document.getElementById('notif-modal-title');
+    if (!modal || !listContainer) return;
+
+    const lang = this.currentLang;
+    if (modalTitle) modalTitle.textContent = lang === 'ar' ? 'الإشعارات' : 'Notifications';
+
+    const activeNotifs = appData.notifications.slice(0, 3);
+    listContainer.innerHTML = activeNotifs.map(n => `
+      <a href="${n.url || appData.defaultUrl}" target="_blank" rel="noopener" class="notif-card-item">
+        <div class="notif-card-header">
+          <span class="notification-tag">${n.badge[lang]}</span>
+        </div>
+        <h4 style="font-size:14px; font-weight:700;">${n.title[lang]}</h4>
+        <p style="font-size:12px; color:var(--text-secondary);">${n.description[lang]}</p>
+      </a>
+    `).join('');
+
+    modal.classList.remove('hidden');
   }
 
-  // Single Active Window Manager
+  // Single Primary Window Manager
   openWindow(folderData) {
     this.activeWindowId = folderData.windowId;
     this.renderWindow(folderData);
@@ -244,15 +276,31 @@ class RallyDesktopApp {
     const lang = this.currentLang;
     const isBoard = folderData.type === 'board';
 
-    const membersHtml = folderData.members.map(m => `
-      <div class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
-        <div class="sticker-img-wrapper">
-          <img src="${m.image}" alt="${m.name[lang]}" class="sticker-img">
-        </div>
-        <span class="sticker-name">${m.name[lang]}</span>
-        <span class="sticker-title">${m.title[lang]}</span>
-      </div>
-    `).join('');
+    // Committee stickers vs Administration stickers
+    // For Committees: position only on sticker
+    // For Administration: name on top, position underneath
+    const membersHtml = folderData.members.map(m => {
+      if (isBoard) {
+        return `
+          <div class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
+            <div class="sticker-img-wrapper">
+              <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
+            </div>
+            <span class="sticker-name">${m.name[lang]}</span>
+            <span class="sticker-title">${m.title[lang]}</span>
+          </div>
+        `;
+      } else {
+        return `
+          <div class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
+            <div class="sticker-img-wrapper">
+              <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
+            </div>
+            <span class="sticker-name">${m.title[lang]}</span>
+          </div>
+        `;
+      }
+    }).join('');
 
     let actionHeaderHtml = '';
     if (!isBoard) {
@@ -316,7 +364,7 @@ class RallyDesktopApp {
     }
   }
 
-  // Member Info Modal Popup (RLY-I001 .. RLY-I019)
+  // Member Info Modal Popup
   openMemberInfoModal(member) {
     const modal = document.getElementById('member-info-modal');
     if (!modal) return;
@@ -325,21 +373,31 @@ class RallyDesktopApp {
     const nameEl = document.getElementById('info-member-name');
     const roleEl = document.getElementById('info-member-role');
     const commEl = document.getElementById('info-member-committee');
+    const studiesEl = document.getElementById('info-member-studies');
+    const interestsEl = document.getElementById('info-member-interests');
     const bioEl = document.getElementById('info-member-bio');
     const imgEl = document.getElementById('info-member-img');
     const linkEl = document.getElementById('info-member-link');
 
     if (nameEl) nameEl.textContent = member.name[lang];
     if (roleEl) roleEl.textContent = member.title[lang];
-    if (commEl) commEl.textContent = member.committee[lang];
+    if (commEl) commEl.textContent = `${lang === 'ar' ? 'اللجنة: ' : 'Committee: '}${member.committee[lang]}`;
+    if (studiesEl) studiesEl.textContent = `${lang === 'ar' ? 'الدراسة: ' : 'Studies: '}${member.studies[lang]}`;
+    if (interestsEl) interestsEl.textContent = `${lang === 'ar' ? 'الاهتمامات: ' : 'Interests: '}${member.interests[lang]}`;
     if (bioEl) bioEl.textContent = member.bio[lang];
     if (imgEl) imgEl.src = member.image;
-    if (linkEl) linkEl.href = member.contactUrl;
+
+    if (linkEl) {
+      linkEl.href = member.contactUrl || appData.defaultEmail;
+      linkEl.textContent = lang === 'ar'
+        ? `تواصل مع ${member.title[lang]}`
+        : `Contact ${member.title[lang]}`;
+    }
 
     modal.classList.remove('hidden');
   }
 
-  // Members Directory App Modal (RLY-AW001 .. RLY-AW005)
+  // Members Directory App Modal - Displays Name-Only List
   openMembersAppModal(folderData) {
     const modal = document.getElementById('members-app-modal');
     const list = document.getElementById('app-members-list');
@@ -349,10 +407,10 @@ class RallyDesktopApp {
     const lang = this.currentLang;
     if (title) title.textContent = `${folderData.name[lang]} - ${folderData.app.name[lang]}`;
 
+    // Name-only list, no positions or action buttons beside names
     list.innerHTML = folderData.members.map(m => `
       <li class="members-app-item">
-        <span><strong>${m.name[lang]}</strong> - ${m.title[lang]}</span>
-        <a href="${m.contactUrl}" target="_blank" rel="noopener" class="btn-primary" style="padding: 3px 8px; font-size:11px;">Profile</a>
+        <span>${m.name[lang]}</span>
       </li>
     `).join('');
 
