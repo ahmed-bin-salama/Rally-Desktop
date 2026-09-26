@@ -107,9 +107,11 @@ class RallyDesktopApp {
       langBtn.addEventListener('click', () => this.toggleLanguage());
     }
 
-    // Dock Folders Click Events
-    document.querySelectorAll('.dock-folder-item').forEach(folderBtn => {
-      folderBtn.addEventListener('click', () => {
+    // Dock Folders Click Events - RESTORED CLICK BINDING FOR DOCK FOLDERS
+    document.querySelectorAll('.dock-folder-item, [data-window]').forEach(folderBtn => {
+      folderBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const winId = folderBtn.dataset.window;
         const folderData = appData.folders.find(f => f.windowId === winId);
         if (folderData) {
@@ -276,15 +278,18 @@ class RallyDesktopApp {
     const lang = this.currentLang;
     const isBoard = folderData.type === 'board';
 
-    // Committee stickers vs Administration stickers
-    // For Committees: position only on sticker
-    // For Administration: name on top, position underneath
+    // Sticker Display Logic:
+    // Known Real Name -> Person Name on top, Position underneath
+    // Unknown Real Name -> Position only
     const membersHtml = folderData.members.map(m => {
-      if (isBoard) {
+      const imgSrc = m.image;
+      const fallbackImg = m.placeholderImage || "assets/people/member-01.svg";
+
+      if (m.hasRealName) {
         return `
           <div class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
             <div class="sticker-img-wrapper">
-              <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
+              <img src="${imgSrc}" onerror="this.onerror=null;this.src='${fallbackImg}';" alt="${m.name[lang]}" class="sticker-img">
             </div>
             <span class="sticker-name">${m.name[lang]}</span>
             <span class="sticker-title">${m.title[lang]}</span>
@@ -294,7 +299,7 @@ class RallyDesktopApp {
         return `
           <div class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
             <div class="sticker-img-wrapper">
-              <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
+              <img src="${imgSrc}" onerror="this.onerror=null;this.src='${fallbackImg}';" alt="${m.title[lang]}" class="sticker-img">
             </div>
             <span class="sticker-name">${m.title[lang]}</span>
           </div>
@@ -382,10 +387,33 @@ class RallyDesktopApp {
     if (nameEl) nameEl.textContent = member.name[lang];
     if (roleEl) roleEl.textContent = member.title[lang];
     if (commEl) commEl.textContent = `${lang === 'ar' ? 'اللجنة: ' : 'Committee: '}${member.committee[lang]}`;
-    if (studiesEl) studiesEl.textContent = `${lang === 'ar' ? 'الدراسة: ' : 'Studies: '}${member.studies[lang]}`;
-    if (interestsEl) interestsEl.textContent = `${lang === 'ar' ? 'الاهتمامات: ' : 'Interests: '}${member.interests[lang]}`;
+
+    if (studiesEl) {
+      if (member.studies && member.studies[lang]) {
+        studiesEl.textContent = `${lang === 'ar' ? 'الدراسة: ' : 'Major / Studies: '}${member.studies[lang]}`;
+        studiesEl.style.display = 'block';
+      } else {
+        studiesEl.style.display = 'none';
+      }
+    }
+
+    if (interestsEl) {
+      if (member.interests && member.interests[lang]) {
+        interestsEl.textContent = `${lang === 'ar' ? 'الاهتمامات: ' : 'Interests: '}${member.interests[lang]}`;
+        interestsEl.style.display = 'block';
+      } else {
+        interestsEl.style.display = 'none';
+      }
+    }
+
     if (bioEl) bioEl.textContent = member.bio[lang];
-    if (imgEl) imgEl.src = member.image;
+
+    if (imgEl) {
+      imgEl.src = member.image;
+      imgEl.onerror = () => {
+        imgEl.src = member.placeholderImage || "assets/people/member-01.svg";
+      };
+    }
 
     if (linkEl) {
       linkEl.href = member.contactUrl || appData.defaultEmail;
