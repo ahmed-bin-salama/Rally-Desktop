@@ -2,14 +2,12 @@
 :root {
   --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --bg-topbar: rgba(255, 255, 255, 0.75);
-  --bg-topbar-dark: rgba(20, 24, 33, 0.85);
   --glass-border: rgba(255, 255, 255, 0.3);
   --text-primary: #1e293b;
   --text-secondary: #64748b;
   --text-light: #f8fafc;
   --color-accent: #2563eb;
   --color-accent-hover: #1d4ed8;
-  --color-gold: #f59e0b;
   --card-bg: rgba(255, 255, 255, 0.92);
   --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
   --window-border-radius: 18px;
@@ -89,21 +87,25 @@ body {
   gap: 12px;
 }
 
-/* Rally Logo Button (RLY-L001) */
+/* Rally Logo Button with background plate (RLY-L001) */
+.logo-plate {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 3px 10px !important;
+  border-radius: 8px !important;
+}
+
 .logo-btn {
-  background: transparent;
-  border: none;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
   transition: var(--transition-fast);
 }
 
 .logo-btn:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.98) !important;
 }
 
 .logo-img {
@@ -115,6 +117,7 @@ body {
 .logo-text {
   font-weight: 700;
   color: var(--text-primary);
+  font-size: 12px;
 }
 
 /* Dropdown Menu (RLY-MN001) */
@@ -128,7 +131,7 @@ body {
   border-radius: 12px;
   box-shadow: var(--card-shadow);
   padding: 6px;
-  width: 220px;
+  width: 240px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -186,6 +189,10 @@ html[dir="rtl"] .btn-menu {
   font-weight: 600;
   font-size: 12px;
   transition: var(--transition-fast);
+  max-width: 480px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .announcement-banner:hover {
@@ -232,7 +239,7 @@ html[dir="rtl"] .btn-menu {
   border-radius: 50%;
 }
 
-/* Notification Popup Panel (RLY-NP001) */
+/* Single Auto-Rotating Toast Popup (RLY-NP001) */
 .notification-popup {
   position: fixed;
   top: 48px;
@@ -312,48 +319,48 @@ html[dir="rtl"] .notification-popup {
   transition: width 3s linear;
 }
 
-/* Desktop Folders Grid (RLY-F001 .. RLY-F006) */
-.folders-grid {
-  position: relative;
-  z-index: 10;
-  padding: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  grid-auto-rows: 110px;
-  gap: 24px;
-  max-width: 480px;
+/* All Notifications List Window Modal */
+.notifications-window {
+  width: 480px;
 }
 
-.folder-item {
-  background: transparent;
-  border: none;
-  cursor: pointer;
+.notifications-list-body {
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 8px;
-  border-radius: 12px;
+  gap: 12px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.notif-card-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  padding: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
   transition: var(--transition-fast);
 }
 
-.folder-item:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+.notif-card-item:hover {
+  background: rgba(37, 99, 235, 0.05);
+  border-color: var(--color-accent);
 }
 
-.folder-icon-wrapper {
-  font-size: 48px;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+.notif-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.folder-label {
-  color: var(--text-light);
-  font-size: 12px;
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-  text-align: center;
-  line-height: 1.2;
+/* Desktop Main Area */
+.desktop-main-area {
+  flex: 1;
+  position: relative;
 }
 
 /* Primary Windows System (RLY-W001 .. RLY-W006) */
@@ -369,7 +376,7 @@ html[dir="rtl"] .notification-popup {
 
 .mac-window {
   pointer-events: auto;
-  width: 580px;
+  width: 600px;
   height: 520px;
   max-width: 90vw;
   max-height: 80vh;
@@ -437,13 +444,6 @@ html[dir="rtl"] .notification-popup {
 }
 
 /* Committee Window Structure */
-.committee-window-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  height: 100%;
-}
-
 .committee-top-header {
   display: flex;
   align-items: center;
@@ -500,7 +500,7 @@ html[dir="rtl"] .notification-popup {
 /* Member Stickers Grid & Treatment */
 .stickers-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
   padding: 10px 0;
 }
@@ -508,7 +508,7 @@ html[dir="rtl"] .notification-popup {
 .sticker-card {
   background: #ffffff;
   border-radius: 16px;
-  padding: 12px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -520,11 +520,9 @@ html[dir="rtl"] .notification-popup {
   position: relative;
 }
 
-/* Subtle random rotations for playful sticker feel */
 .sticker-card:nth-child(1) { transform: rotate(-2deg); }
 .sticker-card:nth-child(2) { transform: rotate(1.5deg); }
 .sticker-card:nth-child(3) { transform: rotate(-1deg); }
-.sticker-card:nth-child(4) { transform: rotate(2deg); }
 
 .sticker-card:hover {
   transform: scale(1.05) rotate(0deg) translateY(-4px);
@@ -558,6 +556,7 @@ html[dir="rtl"] .notification-popup {
   font-size: 11px;
   color: var(--text-secondary);
   margin-top: 2px;
+  font-weight: 600;
 }
 
 /* Modal Overlays (Member Info, Members App, Attribution) */
@@ -620,7 +619,7 @@ html[dir="rtl"] .notification-popup {
 
 .member-name { font-size: 18px; font-weight: 800; }
 .member-role-badge { font-size: 12px; font-weight: 600; color: var(--color-accent); }
-.member-committee-tag { font-size: 11px; color: var(--text-secondary); }
+.member-committee-tag, .member-studies-tag, .member-interests-tag { font-size: 11px; color: var(--text-secondary); }
 .member-bio-text { font-size: 12px; color: var(--text-primary); margin-top: 6px; line-height: 1.4; }
 
 .btn-primary {
@@ -638,32 +637,24 @@ html[dir="rtl"] .notification-popup {
 
 /* Members Directory App Modal */
 .app-content-padding { padding: 16px; }
-.app-search-field {
-  width: 100%;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.15);
-  font-size: 13px;
-  margin-bottom: 12px;
-}
 
 .members-app-list {
   list-style: none;
-  max-height: 240px;
+  max-height: 260px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .members-app-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  background: rgba(0,0,0,0.02);
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.03);
   border-radius: 8px;
   font-size: 13px;
+  font-weight: 600;
 }
 
 .attribution-content {
@@ -672,7 +663,7 @@ html[dir="rtl"] .notification-popup {
   text-align: center;
 }
 
-/* Dock Styling (RLY-K001) */
+/* Dock Styling (RLY-K001) - Moved Folders Grid into Dock (Total 7 Items) */
 .dock-container {
   position: relative;
   z-index: 100;
@@ -682,18 +673,22 @@ html[dir="rtl"] .notification-popup {
 }
 
 .dock-shelf {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 22px;
   padding: 8px 16px;
   display: flex;
-  gap: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 }
 
-.dock-item {
+.dock-folder-item, .dock-item {
+  background: transparent;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
   position: relative;
   display: flex;
@@ -702,23 +697,56 @@ html[dir="rtl"] .notification-popup {
 }
 
 .dock-icon {
-  font-size: 32px;
+  font-size: 34px;
   transition: var(--transition-fast);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
 }
 
-.dock-item:hover .dock-icon {
-  transform: translateY(-8px) scale(1.15);
+.dock-folder-item:hover .dock-icon, .dock-item:hover .dock-icon {
+  transform: translateY(-8px) scale(1.18);
+}
+
+/* Tooltip for Dock Folders & Browser Shortcut */
+.dock-tooltip {
+  position: absolute;
+  bottom: 50px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.dock-folder-item:hover .dock-tooltip, .dock-item:hover .dock-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dock-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 0 2px;
 }
 
 /* Helper Utility */
 .hidden { display: none !important; }
 
-/* Responsive Adjustments */
-@media (max-width: 640px) {
-  .folders-grid {
-    padding: 16px;
-    gap: 16px;
-    grid-template-columns: repeat(3, 1fr);
+/* Responsive Adjustments for Dock with 7 items */
+@media (max-width: 680px) {
+  .dock-shelf {
+    gap: 8px;
+    padding: 6px 10px;
+  }
+  .dock-icon {
+    font-size: 26px;
   }
   .mac-window {
     width: 95vw;

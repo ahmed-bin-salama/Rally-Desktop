@@ -20,10 +20,10 @@
     <!-- RLY-T001: Top Navigation Bar -->
     <header id="RLY-T001" class="top-bar">
       <div class="top-bar-left">
-        <!-- RLY-L001: Rally Logo Button -->
-        <button id="RLY-L001" class="logo-btn" aria-label="Rally Menu" aria-expanded="false">
+        <!-- RLY-L001: Rally Logo Button with defined background plate -->
+        <button id="RLY-L001" class="logo-btn logo-plate" aria-label="Rally Menu" aria-expanded="false">
           <img src="assets/logos/rally-logo.webp" alt="Rally Logo" class="logo-img">
-          <span class="logo-text">Rally</span>
+          <span id="logo-text-label" class="logo-text">Rally Society SCU</span>
         </button>
 
         <!-- RLY-MN001: Dropdown Menu -->
@@ -80,7 +80,7 @@
       </div>
     </header>
 
-    <!-- RLY-NP001: Auto-Rotating Notification Panel -->
+    <!-- RLY-NP001: Auto-Rotating Single Toast Popup -->
     <aside id="RLY-NP001" class="notification-popup hidden" aria-live="polite">
       <div class="notification-header">
         <span class="notification-tag" id="notification-badge">NEW</span>
@@ -95,59 +95,25 @@
       </div>
     </aside>
 
-    <!-- Desktop Desktop Folders Grid -->
-    <main class="folders-grid">
-      <!-- Folder 01 -->
-      <button id="RLY-F001" class="folder-item" data-window="RLY-W001">
-        <div class="folder-icon-wrapper">
-          <div class="folder-icon">📁</div>
+    <!-- Manual All Notifications Section Overlay -->
+    <div id="notifications-modal" class="modal-overlay hidden" aria-hidden="true">
+      <div class="info-card-window notifications-window">
+        <div class="window-top-bar">
+          <div class="window-controls">
+            <button id="notif-modal-close-btn" class="win-btn close" aria-label="Close"></button>
+          </div>
+          <span class="window-title-text" id="notif-modal-title">Notifications</span>
         </div>
-        <span class="folder-label" data-folder="0">Committee 01</span>
-      </button>
+        <div class="notifications-list-body" id="notifications-list-container">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </div>
+    </div>
 
-      <!-- Folder 02 -->
-      <button id="RLY-F002" class="folder-item" data-window="RLY-W002">
-        <div class="folder-icon-wrapper">
-          <div class="folder-icon">📁</div>
-        </div>
-        <span class="folder-label" data-folder="1">Committee 02</span>
-      </button>
-
-      <!-- Folder 03 -->
-      <button id="RLY-F003" class="folder-item" data-window="RLY-W003">
-        <div class="folder-icon-wrapper">
-          <div class="folder-icon">📁</div>
-        </div>
-        <span class="folder-label" data-folder="2">Committee 03</span>
-      </button>
-
-      <!-- Folder 04 -->
-      <button id="RLY-F004" class="folder-item" data-window="RLY-W004">
-        <div class="folder-icon-wrapper">
-          <div class="folder-icon">📁</div>
-        </div>
-        <span class="folder-label" data-folder="3">Committee 04</span>
-      </button>
-
-      <!-- Folder 05 -->
-      <button id="RLY-F005" class="folder-item" data-window="RLY-W005">
-        <div class="folder-icon-wrapper">
-          <div class="folder-icon">📁</div>
-        </div>
-        <span class="folder-label" data-folder="4">Committee 05</span>
-      </button>
-
-      <!-- Folder 06 (Board) -->
-      <button id="RLY-F006" class="folder-item folder-board" data-window="RLY-W006">
-        <div class="folder-icon-wrapper">
-          <div class="folder-icon">💼</div>
-        </div>
-        <span class="folder-label" data-folder="5">Board / Managers</span>
-      </button>
+    <!-- Desktop Area (Primary Windows render inside window-container) -->
+    <main class="desktop-main-area">
+      <div id="window-container" class="window-container"></div>
     </main>
-
-    <!-- Dynamic Window Overlay Container -->
-    <div id="window-container" class="window-container"></div>
 
     <!-- Member Info Modal (Reusable) -->
     <div id="member-info-modal" class="modal-overlay hidden" aria-hidden="true">
@@ -166,8 +132,10 @@
             <h3 id="info-member-name" class="member-name">Member Name</h3>
             <span id="info-member-role" class="member-role-badge">Role Title</span>
             <p id="info-member-committee" class="member-committee-tag">Committee</p>
+            <p id="info-member-studies" class="member-studies-tag">Studies</p>
+            <p id="info-member-interests" class="member-interests-tag">Interests</p>
             <p id="info-member-bio" class="member-bio-text">Bio details description...</p>
-            <a id="info-member-link" href="#" target="_blank" rel="noopener" class="btn-primary contact-btn">Contact Member</a>
+            <a id="info-member-link" href="#" target="_blank" rel="noopener" class="btn-primary contact-btn">Contact</a>
           </div>
         </div>
       </div>
@@ -183,9 +151,6 @@
           <span class="window-title-text" id="app-modal-header-title">Members App Directory</span>
         </div>
         <div class="app-content-padding">
-          <div class="app-search-box">
-            <input type="text" id="app-search-input" placeholder="Search members..." class="app-search-field">
-          </div>
           <ul id="app-members-list" class="members-app-list"></ul>
         </div>
       </div>
@@ -198,23 +163,63 @@
           <div class="window-controls">
             <button id="attribution-close-btn" class="win-btn close" aria-label="Close"></button>
           </div>
-          <span class="window-title-text">Attribution</span>
+          <span class="window-title-text" id="attribution-header-title">Attribution</span>
         </div>
         <div class="info-card-content attribution-content">
-          <h3>Rally Board Interactive Desktop</h3>
-          <p id="attribution-text-body">Designed & Built for Rally Organization Demo.</p>
-          <p class="attribution-sub">Static macOS-inspired interactive environment.</p>
+          <h3>Rally Society SCU</h3>
+          <p id="attribution-text-body">Designed & Built by Ahmed Bin Salama.</p>
         </div>
       </div>
     </div>
 
-    <!-- RLY-K001: Bottom Dock -->
+    <!-- RLY-K001: Bottom Dock Containing All 6 Folders + Visit Me Browser Icon (Total 7 items) -->
     <footer id="RLY-K001" class="dock-container">
       <div class="dock-shelf">
-        <a id="RLY-K002" href="#" target="_blank" rel="noopener" class="dock-item" title="Rally Instagram">
-          <div class="dock-icon instagram-icon">📸</div>
-          <span class="dock-tooltip">Instagram</span>
+
+        <!-- Folder 01 (PR Committee) -->
+        <button id="RLY-F001" class="dock-folder-item" data-window="RLY-W001">
+          <div class="dock-icon">📁</div>
+          <span class="dock-tooltip folder-label" data-folder="0">PR Committee</span>
+        </button>
+
+        <!-- Folder 02 (HR Committee) -->
+        <button id="RLY-F002" class="dock-folder-item" data-window="RLY-W002">
+          <div class="dock-icon">📁</div>
+          <span class="dock-tooltip folder-label" data-folder="1">HR Committee</span>
+        </button>
+
+        <!-- Folder 03 (Entrepreneurship Committee) -->
+        <button id="RLY-F003" class="dock-folder-item" data-window="RLY-W003">
+          <div class="dock-icon">📁</div>
+          <span class="dock-tooltip folder-label" data-folder="2">Entrepreneurship Committee</span>
+        </button>
+
+        <!-- Folder 04 (Operations Committee) -->
+        <button id="RLY-F004" class="dock-folder-item" data-window="RLY-W004">
+          <div class="dock-icon">📁</div>
+          <span class="dock-tooltip folder-label" data-folder="3">Operations Committee</span>
+        </button>
+
+        <!-- Folder 05 (Marketing Committee) -->
+        <button id="RLY-F005" class="dock-folder-item" data-window="RLY-W005">
+          <div class="dock-icon">📁</div>
+          <span class="dock-tooltip folder-label" data-folder="4">Marketing Committee</span>
+        </button>
+
+        <!-- Folder 06 (Administration) -->
+        <button id="RLY-F006" class="dock-folder-item folder-board" data-window="RLY-W006">
+          <div class="dock-icon">💼</div>
+          <span class="dock-tooltip folder-label" data-folder="5">Administration</span>
+        </button>
+
+        <div class="dock-divider"></div>
+
+        <!-- RLY-K002: Safari/Browser "Visit Me" Dock Shortcut -->
+        <a id="RLY-K002" href="https://ahmed-bin-salama.github.io/Rally-Desktop/" target="_blank" rel="noopener" class="dock-item">
+          <div class="dock-icon browser-icon">🧭</div>
+          <span id="visit-me-tooltip" class="dock-tooltip">Visit Me</span>
         </a>
+
       </div>
     </footer>
 
