@@ -1,113 +1,131 @@
 # ID Registry
 
-This document serves as the master registry for all element IDs across the **Rally Board Interactive Desktop** project.
+This file is the master registry for all stable Rally IDs used by the project.
 
-## Naming Convention
-Format: `RLY-[TYPE][NUMBER]`
-- **RLY**: Project prefix (Rally Desktop).
-- **TYPE**: Code representing element type (1–2 letters).
-- **NUMBER**: Zero-padded identifier (e.g., `001`, `101`).
+## 1. Naming Convention
 
-### Code Definitions
-- `D`: Desktop & Background
-- `T`: Top Bar Container
-- `L`: Logo
-- `MN`: Menu Container
-- `MS`: Center Message / Announcement
-- `S`: Season / Status
-- `LG`: Language Control
-- `N`: Notification Control / Item
-- `NP`: Notification Panel
-- `F`: Folder Icon
-- `W`: Window Container
-- `WC`: Window Chrome / Controls
-- `WX`: Window Close Control
-- `M`: Member / Manager Entity
-- `I`: Member Info Window
-- `J`: Join / Application Button
-- `A`: Application / App Link
-- `AW`: Application Window
-- `B`: Social / External Button
-- `C`: Contact Channel
-- `K`: Dock / Dock Item
-- `LC`: License / Attribution
+```text
+RLY-[TYPE][NUMBER]
+```
 
----
+Examples:
 
-## Master ID Registry Table
+```text
+RLY-D001
+RLY-W001
+RLY-M001
+RLY-N101
+```
 
-| ID | Element Name | Type | Parent | Purpose | Functional | Editable | Asset/Data Source | Notes |
+Rules:
+
+- IDs are globally unique.
+- IDs are stable across content changes.
+- IDs are not derived from translated display names.
+- IDs are never reused.
+- Existing IDs are not renamed without explicit approval.
+- Deprecated IDs remain documented rather than being silently removed.
+- A new independently editable/functionally relevant element receives a new ID.
+
+## 2. Type Codes
+
+| Code | Meaning |
+|---|---|
+| D | Desktop |
+| T | Top Bar |
+| L | Logo / Label |
+| MN | Rally Menu |
+| MS | Center Announcement / Message |
+| S | Season / Status |
+| LG | Language Control |
+| N | Notification Control / Notification Item |
+| NP | Notification Panel |
+| F | Desktop Folder |
+| W | Primary Window |
+| WC | Window Chrome / Header |
+| WX | Window Close Control |
+| M | Member / Manager |
+| I | Member / Manager Info Window |
+| J | Join / Application Button |
+| A | Members App |
+| AW | Members App Window |
+| B | Social / External Button |
+| C | Contact Channel |
+| K | Dock / Dock Item |
+| LC | Attribution / License |
+
+## 3. Master Registry
+
+| ID | Element Name | Type | Parent | Purpose | Functional | Editable | Data / Asset Source | Notes |
 |---|---|---|---|---|---|---|---|---|
-| **RLY-D001** | Main Desktop | Desktop | Root | Primary desktop container | Yes | No | CSS / Layout | Desktop wrapper |
-| **RLY-D002** | Desktop Background | Desktop | RLY-D001 | Wallpaper background image | No | Yes | `assets/backgrounds/` | Background wallpaper |
-| **RLY-T001** | Top Bar | Top Bar | RLY-D001 | Top navigation bar | Yes | No | CSS / Layout | Mac-inspired bar |
-| **RLY-L001** | Rally Logo | Logo | RLY-T001 | Top left brand logo | Yes | Yes | `assets/logos/` | Logo mark |
-| **RLY-MN001**| Rally Menu | Menu | RLY-L001 | Dropdown options menu | Yes | Yes | `data/links.js` | Menu overlay |
-| **RLY-MS001**| Center Announcement| Message | RLY-T001 | Center marquee announcement| Yes | Yes | `data/site.js` | Top bar banner |
-| **RLY-S001** | Season Display | Season | RLY-T001 | Active season text | No | Yes | `data/site.js` | Season string |
-| **RLY-LG001**| Language Switch | Language| RLY-T001 | Toggle EN / AR switch | Yes | No | State / `data/site.js` | Language switcher |
-| **RLY-N001** | Notification Bell | Control | RLY-T001 | Toggle notification panel | Yes | No | CSS / JS | Bell icon trigger |
-| **RLY-NP001**| Notification Panel | Panel | RLY-N001 | Drawer showing active news | Yes | Yes | `data/notifications.js`| Notification drawer |
-| **RLY-N101** | Notification Item 1 | Item | RLY-NP001| News feed item slot 1 | Yes | Yes | `data/notifications.js`| Feed item 1 |
-| **RLY-N102** | Notification Item 2 | Item | RLY-NP001| News feed item slot 2 | Yes | Yes | `data/notifications.js`| Feed item 2 |
-| **RLY-N103** | Notification Item 3 | Item | RLY-NP001| News feed item slot 3 | Yes | Yes | `data/notifications.js`| Feed item 3 |
-| **RLY-N104** | Notification Item 4 | Item | RLY-NP001| News feed item slot 4 | Yes | Yes | `data/notifications.js`| Feed item 4 |
-| **RLY-N105** | Notification Item 5 | Item | RLY-NP001| News feed item slot 5 | Yes | Yes | `data/notifications.js`| Feed item 5 |
-| **RLY-F001** | Folder Committee 1 | Folder | RLY-D001 | Desktop icon Committee 1 | Yes | Yes | `data/committees.js` | Opens RLY-W001 |
-| **RLY-F002** | Folder Committee 2 | Folder | RLY-D001 | Desktop icon Committee 2 | Yes | Yes | `data/committees.js` | Opens RLY-W002 |
-| **RLY-F003** | Folder Committee 3 | Folder | RLY-D001 | Desktop icon Committee 3 | Yes | Yes | `data/committees.js` | Opens RLY-W003 |
-| **RLY-F004** | Folder Committee 4 | Folder | RLY-D001 | Desktop icon Committee 4 | Yes | Yes | `data/committees.js` | Opens RLY-W004 |
-| **RLY-F005** | Folder Committee 5 | Folder | RLY-D001 | Desktop icon Committee 5 | Yes | Yes | `data/committees.js` | Opens RLY-W005 |
-| **RLY-F006** | Folder Board | Folder | RLY-D001 | Desktop icon Board / Mgrs| Yes | Yes | `data/committees.js` | Opens RLY-W006 |
-| **RLY-W001** | Window Committee 1 | Window | RLY-F001 | Window overlay Committee 1| Yes | Yes | `data/committees.js` | Committee 1 window |
-| **RLY-W002** | Window Committee 2 | Window | RLY-F002 | Window overlay Committee 2| Yes | Yes | `data/committees.js` | Committee 2 window |
-| **RLY-W003** | Window Committee 3 | Window | RLY-F003 | Window overlay Committee 3| Yes | Yes | `data/committees.js` | Committee 3 window |
-| **RLY-W004** | Window Committee 4 | Window | RLY-F004 | Window overlay Committee 4| Yes | Yes | `data/committees.js` | Committee 4 window |
-| **RLY-W005** | Window Committee 5 | Window | RLY-F005 | Window overlay Committee 5| Yes | Yes | `data/committees.js` | Committee 5 window |
-| **RLY-W006** | Window Board | Window | RLY-F006 | Window overlay Board | Yes | Yes | `data/committees.js` | Board window |
-| **RLY-M001** | Member RLY-M001 | Member | RLY-W001 | Member 1 in Committee 1 | Yes | Yes | `data/members.js` | Demo sticker slot |
-| **RLY-M002** | Member RLY-M002 | Member | RLY-W001 | Member 2 in Committee 1 | Yes | Yes | `data/members.js` | Demo sticker slot |
-| **RLY-M003** | Member RLY-M003 | Member | RLY-W001 | Member 3 in Committee 1 | Yes | Yes | `data/members.js` | Demo sticker slot |
-| **RLY-M004** | Member RLY-M004 | Member | RLY-W002 | Member 1 in Committee 2 | Yes | Yes | `data/members.js` | Demo sticker slot |
-| **RLY-M005** | Member RLY-M005 | Member | RLY-W002 | Member 2 in Committee 2 | Yes | Yes | `data/members.js` | Demo sticker slot |
-| **RLY-M006** | Member RLY-M006 | Member | RLY-W002 | Member 3 in Committee 2 | Yes | Yes | `data/members.js` | Demo sticker slot |
-| **RLY-M101** | Manager RLY-M101 | Member | RLY-W006 | Board Member 1 | Yes | Yes | `data/members.js` | Board manager slot |
-| **RLY-M102** | Manager RLY-M102 | Member | RLY-W006 | Board Member 2 | Yes | Yes | `data/members.js` | Board manager slot |
-| **RLY-M103** | Manager RLY-M103 | Member | RLY-W006 | Board Member 3 | Yes | Yes | `data/members.js` | Board manager slot |
-| **RLY-M104** | Manager RLY-M104 | Member | RLY-W006 | Board Member 4 | Yes | Yes | `data/members.js` | Board manager slot |
-| **RLY-I001** | Info Window RLY-I001| Info Win| RLY-M001 | Profile modal RLY-M001 | Yes | Yes | `data/members.js` | Info card |
-| **RLY-I002** | Info Window RLY-I002| Info Win| RLY-M002 | Profile modal RLY-M002 | Yes | Yes | `data/members.js` | Info card |
-| **RLY-I003** | Info Window RLY-I003| Info Win| RLY-M003 | Profile modal RLY-M003 | Yes | Yes | `data/members.js` | Info card |
-| **RLY-I004** | Info Window RLY-I004| Info Win| RLY-M004 | Profile modal RLY-M004 | Yes | Yes | `data/members.js` | Info card |
-| **RLY-I005** | Info Window RLY-I005| Info Win| RLY-M005 | Profile modal RLY-M005 | Yes | Yes | `data/members.js` | Info card |
-| **RLY-I006** | Info Window RLY-I006| Info Win| RLY-M006 | Profile modal RLY-M006 | Yes | Yes | `data/members.js` | Info card |
-| **RLY-I101** | Info Window RLY-I101| Info Win| RLY-M101 | Profile modal RLY-M101 | Yes | Yes | `data/members.js` | Board Info card |
-| **RLY-I102** | Info Window RLY-I102| Info Win| RLY-M102 | Profile modal RLY-M102 | Yes | Yes | `data/members.js` | Board Info card |
-| **RLY-I103** | Info Window RLY-I103| Info Win| RLY-M103 | Profile modal RLY-M103 | Yes | Yes | `data/members.js` | Board Info card |
-| **RLY-I104** | Info Window RLY-I104| Info Win| RLY-M104 | Profile modal RLY-M104 | Yes | Yes | `data/members.js` | Board Info card |
-| **RLY-J001** | Join Button Comm 1 | Join Btn| RLY-W001 | Apply button Committee 1 | Yes | Yes | `data/committees.js` | Form link |
-| **RLY-J002** | Join Button Comm 2 | Join Btn| RLY-W002 | Apply button Committee 2 | Yes | Yes | `data/committees.js` | Form link |
-| **RLY-J003** | Join Button Comm 3 | Join Btn| RLY-W003 | Apply button Committee 3 | Yes | Yes | `data/committees.js` | Form link |
-| **RLY-J004** | Join Button Comm 4 | Join Btn| RLY-W004 | Apply button Committee 4 | Yes | Yes | `data/committees.js` | Form link |
-| **RLY-J005** | Join Button Comm 5 | Join Btn| RLY-W005 | Apply button Committee 5 | Yes | Yes | `data/committees.js` | Form link |
-| **RLY-A001** | App Comm 1 | MembersApp| RLY-W001| Members app icon Comm 1 | Yes | Yes | `data/committees.js` | Opens RLY-AW001 |
-| **RLY-A002** | App Comm 2 | MembersApp| RLY-W002| Members app icon Comm 2 | Yes | Yes | `data/committees.js` | Opens RLY-AW002 |
-| **RLY-A003** | App Comm 3 | MembersApp| RLY-W003| Members app icon Comm 3 | Yes | Yes | `data/committees.js` | Opens RLY-AW003 |
-| **RLY-A004** | App Comm 4 | MembersApp| RLY-W004| Members app icon Comm 4 | Yes | Yes | `data/committees.js` | Opens RLY-AW004 |
-| **RLY-A005** | App Comm 5 | MembersApp| RLY-W005| Members app icon Comm 5 | Yes | Yes | `data/committees.js` | Opens RLY-AW005 |
-| **RLY-A006** | App Board | MembersApp| RLY-W006| Board directory app icon | Yes | Yes | `data/committees.js` | Opens RLY-AW006 |
-| **RLY-AW001**| App Win Comm 1 | App Window| RLY-A001| Directory window Comm 1 | Yes | Yes | `data/committees.js` | Full directory |
-| **RLY-AW002**| App Win Comm 2 | App Window| RLY-A002| Directory window Comm 2 | Yes | Yes | `data/committees.js` | Full directory |
-| **RLY-AW003**| App Win Comm 3 | App Window| RLY-A003| Directory window Comm 3 | Yes | Yes | `data/committees.js` | Full directory |
-| **RLY-AW004**| App Win Comm 4 | App Window| RLY-A004| Directory window Comm 4 | Yes | Yes | `data/committees.js` | Full directory |
-| **RLY-AW005**| App Win Comm 5 | App Window| RLY-A005| Directory window Comm 5 | Yes | Yes | `data/committees.js` | Full directory |
-| **RLY-AW006**| App Win Board | App Window| RLY-A006| Directory window Board | Yes | Yes | `data/committees.js` | Full directory |
-| **RLY-B001** | Facebook Link | Button | RLY-MN001| Social link Facebook | Yes | Yes | `data/links.js` | External link |
-| **RLY-B002** | TikTok Link | Button | RLY-MN001| Social link TikTok | Yes | Yes | `data/links.js` | External link |
-| **RLY-B003** | Instagram Link | Button | RLY-MN001| Social link Instagram | Yes | Yes | `data/links.js` | External link |
-| **RLY-B004** | WhatsApp Group | Button | RLY-MN001| Social link WhatsApp grp | Yes | Yes | `data/links.js` | External link |
-| **RLY-C001** | Email Link | Contact | RLY-MN001| Email contact option | Yes | Yes | `data/links.js` | Mailto link |
-| **RLY-C002** | WhatsApp Contact | Contact | RLY-MN001| Direct WhatsApp contact | Yes | Yes | `data/links.js` | Direct chat link |
-| **RLY-LC001**| License / Credit | Label | RLY-MN001| Attribution modal/label | No | Yes | `data/links.js` | Copyright notice |
-| **RLY-K001** | Dock | Dock | RLY-D001 | Bottom dock container | Yes | No | CSS / Layout | macOS-style dock |
-| **RLY-K002** | Dock Instagram | Dock Item| RLY-K001 | Dock shortcut Instagram | Yes | Yes | `data/links.js` | Quick shortcut |
+| RLY-D001 | Main Desktop | Desktop | Root | Main experience container | Yes | No | Future HTML/CSS | Primary viewport |
+| RLY-D002 | Desktop Background | Desktop | RLY-D001 | Wallpaper/background layer | No | Yes | `assets/backgrounds/` | Decorative |
+| RLY-T001 | Top Bar | Top Bar | RLY-D001 | Persistent top interface | Yes | No | Future HTML/CSS | Fixed/persistent |
+| RLY-L001 | Rally Logo | Logo | RLY-T001 | Opens Rally Menu | Yes | Yes | `assets/logos/`, `data/links.js` | Brand control |
+| RLY-MN001 | Rally Menu | Menu | RLY-L001 | Rally platform/contact menu | Yes | Yes | `data/links.js` | Menu container |
+| RLY-B001 | Facebook | External Button | RLY-MN001 | Open Facebook | Yes | Yes | `data/links.js` | External |
+| RLY-B002 | TikTok | External Button | RLY-MN001 | Open TikTok | Yes | Yes | `data/links.js` | External |
+| RLY-B003 | Instagram | External Button | RLY-MN001 | Open Instagram | Yes | Yes | `data/links.js` | External |
+| RLY-B004 | WhatsApp Group | External Button | RLY-MN001 | Open WhatsApp group | Yes | Yes | `data/links.js` | External |
+| RLY-LC001 | Attribution | Attribution | RLY-MN001 | Attribution / license text | No | Yes | `data/links.js` | Text only |
+| RLY-C001 | Email | Contact | RLY-MN001 | Email contact target | Yes | Yes | `data/links.js` | External |
+| RLY-C002 | WhatsApp Contact | Contact | RLY-MN001 | Direct WhatsApp target | Yes | Yes | `data/links.js` | External |
+| RLY-MS001 | Center Announcement | Message | RLY-T001 | Clickable announcement | Yes | Yes | `data/site.js` | Text + URL |
+| RLY-S001 | Season Display | Status | RLY-T001 | Current Rally season | No | Yes | `data/site.js` | Data-driven |
+| RLY-LG001 | Language Switch | Language | RLY-T001 | EN / AR control | Yes | Yes | `data/site.js` + future state | Global language control |
+| RLY-N001 | Notification Control | Notification Control | RLY-T001 | Opens notification panel | Yes | No | Future JS/CSS | Control |
+| RLY-NP001 | Notification Panel | Notification Panel | RLY-T001 | Notification container | Yes | Yes | `data/notifications.js` | Supports 1–5 active items |
+| RLY-N101 | Notification 1 | Notification Item | RLY-NP001 | Notification slot | Yes | Yes | `data/notifications.js` | Planned slot |
+| RLY-N102 | Notification 2 | Notification Item | RLY-NP001 | Notification slot | Yes | Yes | `data/notifications.js` | Planned slot |
+| RLY-N103 | Notification 3 | Notification Item | RLY-NP001 | Notification slot | Yes | Yes | `data/notifications.js` | Planned slot |
+| RLY-N104 | Notification 4 | Notification Item | RLY-NP001 | Notification slot | Yes | Yes | `data/notifications.js` | Planned slot |
+| RLY-N105 | Notification 5 | Notification Item | RLY-NP001 | Notification slot | Yes | Yes | `data/notifications.js` | Planned slot |
+| RLY-F001 | Committee 1 Folder | Folder | RLY-D001 | Open committee 1 | Yes | Yes | `data/committees.js` | Maps to RLY-W001 |
+| RLY-F002 | Committee 2 Folder | Folder | RLY-D001 | Open committee 2 | Yes | Yes | `data/committees.js` | Maps to RLY-W002 |
+| RLY-F003 | Committee 3 Folder | Folder | RLY-D001 | Open committee 3 | Yes | Yes | `data/committees.js` | Maps to RLY-W003 |
+| RLY-F004 | Committee 4 Folder | Folder | RLY-D001 | Open committee 4 | Yes | Yes | `data/committees.js` | Maps to RLY-W004 |
+| RLY-F005 | Committee 5 Folder | Folder | RLY-D001 | Open committee 5 | Yes | Yes | `data/committees.js` | Maps to RLY-W005 |
+| RLY-F006 | Board / Managers Folder | Folder | RLY-D001 | Open board/managers | Yes | Yes | `data/committees.js` | Maps to RLY-W006 |
+| RLY-W001 | Committee 1 Window | Primary Window | RLY-F001 | Committee 1 content | Yes | Yes | `data/committees.js` | One reusable template |
+| RLY-W002 | Committee 2 Window | Primary Window | RLY-F002 | Committee 2 content | Yes | Yes | `data/committees.js` | One reusable template |
+| RLY-W003 | Committee 3 Window | Primary Window | RLY-F003 | Committee 3 content | Yes | Yes | `data/committees.js` | One reusable template |
+| RLY-W004 | Committee 4 Window | Primary Window | RLY-F004 | Committee 4 content | Yes | Yes | `data/committees.js` | One reusable template |
+| RLY-W005 | Committee 5 Window | Primary Window | RLY-F005 | Committee 5 content | Yes | Yes | `data/committees.js` | One reusable template |
+| RLY-W006 | Board / Managers Window | Primary Window | RLY-F006 | Board/manager content | Yes | Yes | `data/committees.js` | Shared window variant |
+| RLY-WC001–RLY-WC006 | Window Chrome | Window Chrome | RLY-W001–RLY-W006 | Window header/chrome | Yes | Yes | Future CSS/HTML | One per primary window instance |
+| RLY-WX001–RLY-WX006 | Window Close | Window Close | RLY-W001–RLY-W006 | Close primary window | Yes | No | Future HTML/JS | One per primary window instance |
+| RLY-M001–RLY-M015 | Committee Members | Member | RLY-W001–RLY-W005 | 3 member slots per committee | Yes | Yes | `data/members.js` + `assets/people/` | Planned demo/system IDs |
+| RLY-M101–RLY-M104 | Board / Managers | Member | RLY-W006 | 4 manager slots | Yes | Yes | `data/members.js` + `assets/people/` | Planned demo/system IDs |
+| RLY-I001–RLY-I015 | Committee Member Info | Info Window | RLY-M001–RLY-M015 | Member profile window | Yes | Yes | `data/members.js` | One per committee member ID |
+| RLY-I101–RLY-I104 | Manager Info | Info Window | RLY-M101–RLY-M104 | Manager profile window | Yes | Yes | `data/members.js` | One per manager ID |
+| RLY-J001–RLY-J005 | Committee Join Buttons | Join Button | RLY-W001–RLY-W005 | Open committee application | Yes | Yes | `data/committees.js` | One per committee |
+| RLY-A001–RLY-A005 | Committee Members App | Members App | RLY-W001–RLY-W005 | Open committee directory | Yes | Yes | `data/committees.js` | One per committee |
+| RLY-AW001–RLY-AW005 | Committee Members App Window | App Window | RLY-A001–RLY-A005 | Display committee members | Yes | Yes | `data/committees.js` | Shared reusable template |
+| RLY-K001 | Dock | Dock | RLY-D001 | Bottom shortcut container | Yes | No | Future HTML/CSS | Minimal dock |
+| RLY-K002 | Instagram Shortcut | Dock Item | RLY-K001 | Open Instagram | Yes | Yes | `data/links.js` | External |
+
+## 4. Planned Member Allocation
+
+### Committee 1
+`RLY-M001`–`RLY-M003` → `RLY-I001`–`RLY-I003`
+
+### Committee 2
+`RLY-M004`–`RLY-M006` → `RLY-I004`–`RLY-I006`
+
+### Committee 3
+`RLY-M007`–`RLY-M009` → `RLY-I007`–`RLY-I009`
+
+### Committee 4
+`RLY-M010`–`RLY-M012` → `RLY-I010`–`RLY-I012`
+
+### Committee 5
+`RLY-M013`–`RLY-M015` → `RLY-I013`–`RLY-I015`
+
+### Board / Managers
+`RLY-M101`–`RLY-M104` → `RLY-I101`–`RLY-I104`
+
+## 5. Registry Status
+
+All IDs above are **planned system/demo IDs**, not real-person identities or production content assignments.
+
+When an ID is deprecated, retain it in this file and mark its status rather than silently reusing it.

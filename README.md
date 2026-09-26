@@ -1,99 +1,139 @@
 # Rally Board Interactive Desktop
 
 ## Project
-**Rally Board Interactive Desktop** is a lightweight static website that presents Rally's board and committees through a playful, polished, Mac-inspired desktop experience.
+
+**Rally Board Interactive Desktop** is a lightweight static web experience that presents Rally's board and committees through a playful, polished desktop metaphor inspired by macOS.
+
+It is **not** a real operating system simulation. The desktop language is used as a presentation and navigation model for Rally's organizational structure.
 
 ## Purpose
-The site serves as an engaging organizational overview for Rally members, prospective applicants, and visitors. Rather than presenting static list pages, users navigate committees and board profiles by opening interactive desktop folders, windows, and member info windows.
 
-## Experience
-The interface feels like exploring Rally's organization through a mini interactive operating system desktop:
-- Desktop background with 6 interactive folders (5 Committee Folders + 1 Board / Managers Folder).
-- Top Bar containing Rally branding, season display, central announcement, bilingual language switcher (English/Arabic), and interactive notification panel.
-- Committee Windows with member sticker representations, info cards, application/join buttons, and a Committee Members app.
-- Bottom Dock featuring quick shortcuts (e.g., Instagram).
+The project is intended to make Rally's organizational structure easier to explore than a conventional committee or board page while remaining technically simple, fast, and maintainable.
+
+The future experience will let a visitor understand the organization through:
+
+- a Rally-branded desktop
+- six folders representing five committees and the Board / Managers group
+- reusable committee/board windows
+- member sticker photography and lightweight profile windows
+- committee application links
+- a simple members directory app
+- announcements and notifications
+- EN / AR language switching
+- a minimal Instagram dock shortcut
 
 ## Technology
+
 ```text
 HTML
 CSS
 Vanilla JavaScript
-Static data files (ES Modules)
-Static assets
+Static data modules
+Static media assets
 GitHub
 Cloudflare Pages
 ```
 
+No backend, database, authentication, CMS, API, or application framework is required by the current project definition.
+
 ## Current Status
-> Repository architecture initialized. Application implementation has not started.
+
+> **Phase 1 — Repository Architecture initialized. Application implementation is intentionally absent from this architecture branch.**
+
+This branch contains the planning foundation only: project documentation, ID governance, data schemas, asset organization, and implementation guidance.
 
 ## Repository Structure
+
 ```text
 rally-board/
 │
-├── README.md               # Top-level project documentation (this file)
-├── PROJECT_MAP.md          # Architectural hierarchy & component map
-├── ID_REGISTRY.md          # Master registry of element IDs (RLY-XXXX)
-├── DEVELOPMENT_PLAN.md     # 16-phase implementation roadmap
-├── CHANGELOG.md            # Version release history
-├── CONTRIBUTING.md         # Guidelines for repository maintainers
-├── AI_EDITING_RULES.md     # Rules for future AI-assisted development
-├── ASSET_GUIDELINES.md     # Specs & naming rules for media assets
-├── CONTENT_GUIDELINES.md   # Guidelines for integrating real bilingual data
+├── README.md
+├── PROJECT_MAP.md
+├── ID_REGISTRY.md
+├── DEVELOPMENT_PLAN.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── AI_EDITING_RULES.md
+├── ASSET_GUIDELINES.md
+├── CONTENT_GUIDELINES.md
 │
-├── css/                    # Stylesheets & CSS custom properties (README only)
-├── js/                     # Client-side JavaScript modules (README only)
+├── css/
+│   └── README.md
 │
-├── data/                   # Data modules & bilingual schema templates
+├── js/
+│   └── README.md
+│
+├── data/
 │   ├── README.md
-│   ├── site.js             # Season, top bar message, language settings
-│   ├── committees.js       # Committee & Board metadata
-│   ├── members.js          # Member profiles & bio data
-│   ├── notifications.js    # Top bar notifications feed
-│   └── links.js            # External social & contact links
+│   ├── site.js
+│   ├── committees.js
+│   ├── members.js
+│   ├── notifications.js
+│   └── links.js
 │
-├── assets/                 # Organized asset directories (READMEs only)
+├── assets/
 │   ├── README.md
-│   ├── people/             # Member photos & transparent stickers
-│   ├── committees/         # Committee artwork & illustrations
-│   ├── icons/              # UI interface icons
-│   ├── logos/              # Rally brand marks & logos
-│   ├── backgrounds/        # Desktop wallpapers
-│   └── textures/           # Paper & grain texture overlays
+│   ├── people/
+│   ├── committees/
+│   ├── icons/
+│   ├── logos/
+│   ├── backgrounds/
+│   └── textures/
 │
-└── docs/                   # Detailed architectural documentation
+└── docs/
     ├── README.md
-    ├── ARCHITECTURE.md     # System & technology stack architecture
-    ├── UI_STRUCTURE.md     # Interface component hierarchy
-    ├── DATA_MODEL.md       # Data schema & relationship definitions
-    └── DEPLOYMENT.md       # Cloudflare Pages deployment guidelines
+    ├── ARCHITECTURE.md
+    ├── UI_STRUCTURE.md
+    ├── DATA_MODEL.md
+    └── DEPLOYMENT.md
 ```
+
+## Documentation Map
+
+- [PROJECT_MAP.md](PROJECT_MAP.md) — the main future application hierarchy, ownership map, and ID relationships.
+- [ID_REGISTRY.md](ID_REGISTRY.md) — the master registry of stable Rally IDs.
+- [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) — the ordered implementation roadmap.
+- [AI_EDITING_RULES.md](AI_EDITING_RULES.md) — rules for safe AI-assisted changes.
+- [ASSET_GUIDELINES.md](ASSET_GUIDELINES.md) — asset formats, naming, preparation, and placement.
+- [CONTENT_GUIDELINES.md](CONTENT_GUIDELINES.md) — rules for integrating supplied real content.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — technical architecture.
+- [docs/UI_STRUCTURE.md](docs/UI_STRUCTURE.md) — future component hierarchy.
+- [docs/DATA_MODEL.md](docs/DATA_MODEL.md) — future data relationships and schemas.
+- [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) — intended Cloudflare Pages deployment model.
 
 ## Development Stages
+
 ```text
-Repository Architecture (Phase 1 - Current)
-→ Desktop Shell (Phase 2)
-→ Top Bar (Phase 3)
-→ Folder System (Phase 4)
-→ Window System (Phase 5)
-→ Committee System (Phase 6)
-→ Member Sticker + Info System (Phase 7)
-→ Join + External Link System (Phase 8)
-→ Members App (Phase 9)
-→ Notification System (Phase 10)
-→ Language System (Phase 11)
-→ Responsive Design (Phase 12)
-→ Demo Content (Phase 13)
-→ Real Content Integration (Phase 14)
-→ QA (Phase 15)
-→ Deployment (Phase 16)
+Repository Architecture
+→ Desktop Shell
+→ Top Bar
+→ Folder System
+→ Window System
+→ Committee / Board System
+→ Member Sticker + Info System
+→ Join + External Links
+→ Members App
+→ Notifications
+→ Language System
+→ Responsive Design
+→ Demo Content
+→ Real Content Integration
+→ QA
+→ Deployment
 ```
 
-## Important Documentation
-- [PROJECT_MAP.md](PROJECT_MAP.md) — Visual hierarchy & component distribution.
-- [ID_REGISTRY.md](ID_REGISTRY.md) — Master ID registry table (`RLY-XXXX`).
-- [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) — Roadmap for execution.
-- [AI_EDITING_RULES.md](AI_EDITING_RULES.md) — Rules for AI coding assistants.
-- [ASSET_GUIDELINES.md](ASSET_GUIDELINES.md) — Media asset specs.
-- [CONTENT_GUIDELINES.md](CONTENT_GUIDELINES.md) — Data entry standards.
-- [docs/](docs/) — System architecture and model docs.
+## Scope Boundary for Phase 1
+
+This phase intentionally does **not** contain:
+
+- application HTML screens
+- production CSS
+- application JavaScript
+- window manager logic
+- notification logic
+- language switching logic
+- real Rally member/committee content
+- real Rally external links
+- production deployment
+
+Those belong to later implementation phases.

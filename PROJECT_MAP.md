@@ -1,72 +1,156 @@
 # Project Map
 
-This document outlines the visual and architectural hierarchy of the **Rally Board Interactive Desktop** application.
+This is the main architectural map for the **Rally Board Interactive Desktop** project. It describes what the future application contains, how the pieces relate, and where implementation work belongs.
 
-## Application Hierarchy
+## 1. Application Hierarchy
 
 ```text
-Rally Desktop
+Rally Desktop (RLY-D001)
 │
 ├── Top Bar (RLY-T001)
 │   ├── Rally Logo (RLY-L001)
-│   ├── Rally Menu (RLY-MN001)
-│   │   ├── Facebook Link (RLY-B001)
-│   │   ├── TikTok Link (RLY-B002)
-│   │   ├── Instagram Link (RLY-B003)
-│   │   ├── WhatsApp Group Link (RLY-B004)
-│   │   ├── License / Attribution (RLY-LC001)
-│   │   ├── Email Contact (RLY-C001)
-│   │   └── WhatsApp Contact (RLY-C002)
+│   │   └── Rally Menu (RLY-MN001)
+│   │       ├── Facebook (RLY-B001)
+│   │       ├── TikTok (RLY-B002)
+│   │       ├── Instagram (RLY-B003)
+│   │       ├── WhatsApp Group (RLY-B004)
+│   │       ├── Attribution (RLY-LC001)
+│   │       ├── Email (RLY-C001)
+│   │       └── WhatsApp Contact (RLY-C002)
 │   ├── Center Announcement (RLY-MS001)
 │   ├── Season Display (RLY-S001)
 │   ├── Language Switch (RLY-LG001)
 │   └── Notification Control (RLY-N001)
 │       └── Notification Panel (RLY-NP001)
-│           ├── Notification Item 1 (RLY-N101)
-│           ├── Notification Item 2 (RLY-N102)
-│           ├── Notification Item 3 (RLY-N103)
-│           ├── Notification Item 4 (RLY-N104)
-│           └── Notification Item 5 (RLY-N105)
+│           └── Notification Items (RLY-N101–RLY-N105)
 │
-├── Desktop (RLY-D001)
-│   ├── Desktop Background (RLY-D002)
-│   ├── Committee Folder 1 (RLY-F001)
-│   ├── Committee Folder 2 (RLY-F002)
-│   ├── Committee Folder 3 (RLY-F003)
-│   ├── Committee Folder 4 (RLY-F004)
-│   ├── Committee Folder 5 (RLY-F005)
-│   └── Board / Managers Folder (RLY-F006)
+├── Desktop Background (RLY-D002)
+│
+├── Five Committee Folders
+│   ├── RLY-F001 → RLY-W001
+│   ├── RLY-F002 → RLY-W002
+│   ├── RLY-F003 → RLY-W003
+│   ├── RLY-F004 → RLY-W004
+│   └── RLY-F005 → RLY-W005
+│
+├── Board / Managers Folder
+│   └── RLY-F006 → RLY-W006
 │
 └── Dock (RLY-K001)
     └── Instagram Shortcut (RLY-K002)
 ```
 
-## Interaction Hierarchy
+## 2. Folder → Window Model
+
+Folder IDs and Window IDs are intentionally separate.
 
 ```text
-Folder (RLY-F00x)
-  ↓ [Click / Double-click to open]
-Committee Window (RLY-W00x)
-  ├── Artwork Graphic
-  ├── Member Sticker (RLY-M00x)
-  │    ↓ [Click sticker]
-  │   Member Info Window (RLY-I00x)
-  ├── Join Button (RLY-J00x)
-  │    ↓ [Click]
-  │   External Application URL
-  └── Members App (RLY-A00x)
-       ↓ [Click]
-      Members Window (RLY-AW00x)
+Folder
+  ↓
+Window
 ```
 
-## Element Categorization
+Example:
 
-Every element in the application falls into one of the following system categories:
+```text
+RLY-F001 = Committee 1 Folder
+RLY-W001 = Committee 1 Window
+```
 
-1. **Component**: A visual and interactive UI element (e.g., Top Bar, Window, Folder, Dock).
-2. **Data**: Content dynamically injected from `data/*.js` (e.g., Member Bios, Announcement Text, Notification List).
-3. **Asset**: Visual media files loaded from `assets/` (e.g., Member Photos, Committee Illustrations, Icons).
-4. **External Link**: Target URLs directed to third-party services (e.g., Application Forms, Instagram, WhatsApp).
-5. **Functional Control**: Interactive UI triggers (e.g., Language Switcher, Window Close Button, Notification Bell).
+The visible committee name may change without changing either technical ID.
 
-Every component, data entity, asset placeholder, and control MUST be tagged with a unique ID from `ID_REGISTRY.md`.
+## 3. Committee Window Model
+
+Each of the five committee windows follows the same reusable template:
+
+```text
+Committee Window
+├── Window Chrome / Header
+├── Committee Artwork
+├── Member Sticker × 3
+│   └── Member Info Window
+├── Join Committee Button
+└── Members App
+    └── Members App Window
+```
+
+The Board / Managers window is a shared variant of the same presentation system:
+
+```text
+Board / Managers Window
+├── Window Chrome / Header
+├── Optional Board Artwork
+└── Manager Sticker × 4
+    └── Manager Info Window
+```
+
+The Board / Managers group does not receive a join button or members app in the current specification.
+
+## 4. Component / Data / Asset / Link Separation
+
+| Layer | Responsibility | Primary Location |
+|---|---|---|
+| Structure | Future HTML document structure and semantic elements | Future `index.html` |
+| Presentation | Layout, typography, design tokens, responsive rules, sticker treatment | `css/` |
+| Behavior | Rendering, state, interactions, navigation | `js/` |
+| Content | Committee/member/notification/site values | `data/` |
+| Media | Photos, artwork, logos, icons, backgrounds, textures | `assets/` |
+| Architecture | Rules and relationships | Root Markdown + `docs/` |
+| External destinations | Social, contact, application, announcement targets | `data/links.js` and `data/committees.js` |
+
+## 5. ID Ownership
+
+A component receives a Rally ID when it is:
+
+- independently addressable for maintenance
+- user-visible as a functional/major UI element
+- a stable content entity
+- a control whose behavior may be changed independently
+
+Raw sub-elements that are not independently addressable inherit the identity of their parent component and do not require an additional Rally ID.
+
+Assets are referenced by path from data or implementation code; the asset file itself does not automatically require a Rally ID.
+
+## 6. Data Relationships
+
+```text
+site.js
+  ├── Season
+  └── Center Announcement
+
+committees.js
+  ├── Folder ID
+  ├── Window ID
+  ├── Member IDs
+  ├── Join Button ID + URL
+  ├── Artwork path
+  └── Members App IDs
+
+members.js
+  ├── Member ID
+  ├── Info Window ID
+  ├── Committee / Group ID
+  └── Asset + profile data
+
+notifications.js
+  └── Notification IDs + content + URLs
+
+links.js
+  └── Social/contact destinations
+```
+
+## 7. Future Implementation Rule
+
+Implementation should be data-driven:
+
+```text
+Data Record
+  ↓
+Reusable Component
+  ↓
+Stable Rally ID
+  ↓
+Rendered UI
+```
+
+Do not create one custom implementation per committee or per member when the difference can be represented by data.
