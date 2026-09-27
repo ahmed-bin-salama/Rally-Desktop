@@ -293,7 +293,8 @@ class RallyDesktopApp {
         `;
       } else {
         return `
-          <div class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
+          <div id="RLY-STK-${m.id}" class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
+            <span id="RLY-TP-${m.id}" class="sticker-tooltip">${m.name[lang]}</span>
             <div class="sticker-img-wrapper">
               <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
             </div>

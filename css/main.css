@@ -53,9 +53,10 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #0d1527;
   z-index: 1;
 }
 
@@ -540,7 +541,7 @@ html[dir="rtl"] .notification-popup {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
-  padding: 10px 0;
+  padding: 36px 0 10px 0;
 }
 
 .sticker-card {
@@ -779,9 +780,9 @@ html[dir="rtl"] .notification-popup {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 22px;
-  padding: 8px 16px;
+  padding: 10px 16px 8px 16px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 14px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
   max-width: calc(100vw - 16px);
@@ -803,6 +804,8 @@ html[dir="rtl"] .notification-popup {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+  padding-top: 32px;
   flex-shrink: 0;
 }
 
@@ -813,13 +816,15 @@ html[dir="rtl"] .notification-popup {
 }
 
 .dock-folder-item:hover .dock-icon, .dock-item:hover .dock-icon {
-  transform: translateY(-8px) scale(1.18);
+  transform: translateY(-4px) scale(1.15);
 }
 
 /* Tooltip for Dock Folders & Browser Shortcut */
 .dock-tooltip {
   position: absolute;
-  bottom: 50px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
   background: rgba(15, 23, 42, 0.9);
   color: #ffffff;
   padding: 4px 10px;
@@ -829,7 +834,6 @@ html[dir="rtl"] .notification-popup {
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transform: translateY(4px);
   transition: var(--transition-fast);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 120;
