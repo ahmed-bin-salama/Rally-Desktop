@@ -104,7 +104,7 @@ export const appData = {
           studies: { en: "Communications Technology", ar: "تكنولوجيا الاتصالات" },
           interests: { en: "Technology, reading", ar: "التكنولوجيا والقراءة" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Afnan-Rashed-as-Vice-Head-of-PR-removebg-preview.png",
+          image: "assets/people/Afnan-Rashed-as-Vice-Head-of-PR.png",
           contactUrl: "mailto:afnanelawody6@gmail.com"
         },
         {
@@ -147,7 +147,7 @@ export const appData = {
           studies: { en: "AI & Cloud Engineering", ar: "هندسة الذكاء الاصطناعي والسحابة" },
           interests: { en: "Learning, padel, Barca, and Formula One", ar: "التعلم والباديل وبرشلونة والفورمولا ١" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Eyad-Mohamed-as-Head-of-HR-removebg-preview.png",
+          image: "assets/people/Eyad-Mohamed-as-Head-of-HR.png",
           contactUrl: "mailto:eyadayad066@gmail.com"
         },
         {
@@ -159,7 +159,7 @@ export const appData = {
           studies: { en: "Communications Technology", ar: "تكنولوجيا الاتصالات" },
           interests: { en: "Kickboxing, drawing", ar: "الكيك بوكسينغ والرسم" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Eman-Ayman-as-Vice-Head-of-HR-removebg-preview.png",
+          image: "assets/people/Eman-Ayman-as-Vice-Head-of-HR.png",
           contactUrl: "mailto:emanayman3313@gmail.com"
         },
         {
@@ -202,7 +202,7 @@ export const appData = {
           studies: { en: "Mechatronics", ar: "ميكاترونكس" },
           interests: { en: "Mechatronics", ar: "ميكاترونكس" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Roba-Hesham-as-Head-of-Entrepreneurship-removebg-preview.png",
+          image: "assets/people/Roba-Hesham-as-Head-of-Entrepreneurship.png",
           contactUrl: "mailto:robamossa15@gmail.com"
         },
         {
@@ -214,7 +214,7 @@ export const appData = {
           studies: { en: "Mechatronics Engineering", ar: "هندسة الميكاترونكس" },
           interests: { en: "Walking and reading", ar: "المشي والقراءة" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Basmala-Mohamed-as-Vice-Head-of-Entrepreneurship-removebg-preview.png",
+          image: "assets/people/Basmala-Mohamed-as-Vice-Head-of-Entrepreneurship.png",
           contactUrl: "mailto:bassmalamohamed331@gmail.com"
         },
         {
@@ -226,7 +226,7 @@ export const appData = {
           studies: { en: "Mechatronics", ar: "ميكاترونكس" },
           interests: { en: "Entrepreneurship, reading", ar: "ريادة الأعمال والقراءة" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Fatma-Osama-as-Vice-Head-of-ntrepreneurship-removebg-preview.png",
+          image: "assets/people/Fatma-Osama-as-Vice-Head-of-ntrepreneurship.png",
           contactUrl: "mailto:allafatma437@gmail.com"
         }
       ]
@@ -257,7 +257,7 @@ export const appData = {
           studies: { en: "Electronics", ar: "إلكترونيات" },
           interests: { en: "Conference & Event Presenting, Public Speaking, Leadership, Media, Design", ar: "التقديم والحديث العام والقيادة والإعلام والتصميم" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Nour-Farouk-as-Head-of-Operation-removebg-preview.png",
+          image: "assets/people/Nour-Farouk-as-Head-of-Operation.png",
           contactUrl: "mailto:nourfarouk731@gmail.com"
         },
         {
@@ -312,7 +312,7 @@ export const appData = {
           studies: { en: "Medicine", ar: "الطب البشري" },
           interests: { en: "Entrepreneurship and AI", ar: "ريادة الأعمال والذكاء الاصطناعي" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Ahmed-Bin-Salama-as-Head-of-Marketing-removebg-preview.png",
+          image: "assets/people/Ahmed-Bin-Salama-as-Head-of-Marketing.png",
           contactUrl: "mailto:dr.a7med.email@gmail.com"
         },
         {
@@ -324,7 +324,7 @@ export const appData = {
           studies: { en: "Communication Engineering", ar: "هندسة الاتصالات" },
           interests: { en: "3D/games and swimming", ar: "الثلاثي الأبعاد والألعاب والسباحة" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Abdulrahman-Sabri-as-Vice-Head-of-Marketing-removebg-preview.png",
+          image: "assets/people/Abdulrahman-Sabri-as-Vice-Head-of-Marketing.png",
           contactUrl: "mailto:bodaaboy@gmail.com"
         },
         {
@@ -336,7 +336,7 @@ export const appData = {
           studies: { en: "Commerce", ar: "التجارة" },
           interests: { en: "Business, Entrepreneurship and Chess", ar: "الأعمال وريادة الأعمال والشطرنج" },
           bio: { en: "", ar: "" },
-          image: "assets/people/member-15.svg",
+          image: "assets/people/Menna-Shawky-as-Vice-Head-of-Marketing.png",
           contactUrl: "mailto:mennashawky959@gmail.com"
         }
       ]
@@ -369,7 +369,7 @@ export const appData = {
           studies: { en: "Mechatronics Engineering", ar: "هندسة الميكاترونكس" },
           interests: { en: "Writing, music, and arts", ar: "الكتابة والموسيقى والفنون" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Mohamed-Abdulfattah-as-Vice-of-president-removebg-preview.png",
+          image: "assets/people/Mohamed-Abdulfattah-as-Vice-of-president.png",
           contactUrl: "mailto:ahmedbinsalama@example.com"
         },
         {
