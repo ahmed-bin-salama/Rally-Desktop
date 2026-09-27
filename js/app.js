@@ -280,9 +280,11 @@ class RallyDesktopApp {
     // For Committees: position only on sticker
     // For Administration: name on top, position underneath
     const membersHtml = folderData.members.map(m => {
+      const personName = m.name[lang];
       if (isBoard) {
         return `
           <div class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
+            <span class="sticker-tooltip">${personName}</span>
             <div class="sticker-img-wrapper">
               <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
             </div>
@@ -293,6 +295,7 @@ class RallyDesktopApp {
       } else {
         return `
           <div class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
+            <span class="sticker-tooltip">${personName}</span>
             <div class="sticker-img-wrapper">
               <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
             </div>
@@ -400,12 +403,19 @@ class RallyDesktopApp {
   // Members Directory App Modal - Displays Name-Only List with Gender Icons
   openMembersAppModal(folderData) {
     const modal = document.getElementById('members-app-modal');
-    const list = document.getElementById('app-members-list');
+    const list = document.querySelector('.members-app-list') || document.getElementById('app-members-list');
     const title = document.getElementById('app-modal-header-title');
     if (!modal || !list) return;
 
     const lang = this.currentLang;
     if (title) title.textContent = `${folderData.name[lang]} - ${folderData.app.name[lang]}`;
+
+    // Assign unique list container ID
+    if (folderData.membersDirectory && folderData.membersDirectory.id) {
+      list.id = folderData.membersDirectory.id;
+    } else {
+      list.id = 'app-members-list';
+    }
 
     // Simple member list using folderData.membersDirectory (separated from Board people)
     const membersDir = folderData.membersDirectory ? folderData.membersDirectory.members : [];
@@ -414,7 +424,7 @@ class RallyDesktopApp {
       const genderIcon = m.gender === 'female' ? '♀' : '♂';
       const genderClass = m.gender === 'female' ? 'gender-female' : 'gender-male';
       return `
-        <li class="members-app-item" id="${folderData.membersDirectory ? folderData.membersDirectory.id : ''}">
+        <li class="members-app-item">
           <span class="member-gender-icon ${genderClass}" aria-hidden="true">${genderIcon}</span>
           <span class="member-name-text">${m.name}</span>
         </li>

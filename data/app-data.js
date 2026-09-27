@@ -347,6 +347,14 @@ export const appData = {
       name: { en: "Administration", ar: "الإدارة" },
       type: "board",
       artwork: "assets/committees/board-art.svg",
+      membersDirectory: {
+        id: "RLY-MD006",
+        members: [
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "male" }
+        ]
+      },
       members: [
         {
           id: "RLY-M016",
