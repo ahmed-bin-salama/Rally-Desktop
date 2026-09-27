@@ -14,115 +14,115 @@
 
     <!-- RLY-D002: Desktop Background Wallpaper Layer -->
     <div id="RLY-D002" class="desktop-background" style="background-image: url('assets/backgrounds/desktop-background.jpeg');">
-      <div class="background-overlay"></div>
+      <div id="RLY-D002-OVERLAY" class="background-overlay"></div>
     </div>
 
     <!-- RLY-T001: Top Navigation Bar -->
     <header id="RLY-T001" class="top-bar">
-      <div class="top-bar-left">
+      <div id="RLY-T001-LEFT" class="top-bar-left">
         <!-- RLY-L001: Rally Logo Button with defined background plate -->
         <button id="RLY-L001" class="logo-btn logo-plate" aria-label="Rally Menu" aria-expanded="false">
-          <img src="assets/RallySCU.png" alt="Rally Logo" class="logo-img">
-          <span id="logo-text-label" class="logo-text">Rally Society SCU</span>
+          <img id="RLY-L001-IMG" src="assets/RallySCU.png" alt="Rally Logo" class="logo-img">
+          <span id="RLY-L001-TXT" class="logo-text">Rally Society SCU</span>
         </button>
 
         <!-- RLY-MN001: Dropdown Menu -->
         <nav id="RLY-MN001" class="dropdown-menu hidden" aria-hidden="true">
           <a id="RLY-B001" href="#" target="_blank" rel="noopener" class="menu-item">
-            <span class="menu-icon">📘</span> <span class="menu-label" data-key="facebook">Facebook</span>
+            <span class="menu-icon">📘</span> <span id="RLY-B001-TXT" class="menu-label" data-key="facebook">Facebook</span>
           </a>
           <a id="RLY-B002" href="#" target="_blank" rel="noopener" class="menu-item">
-            <span class="menu-icon">🎵</span> <span class="menu-label" data-key="tiktok">TikTok</span>
+            <span class="menu-icon">🎵</span> <span id="RLY-B002-TXT" class="menu-label" data-key="tiktok">TikTok</span>
           </a>
           <a id="RLY-B003" href="#" target="_blank" rel="noopener" class="menu-item">
-            <span class="menu-icon">📸</span> <span class="menu-label" data-key="instagram">Instagram</span>
+            <span class="menu-icon">📸</span> <span id="RLY-B003-TXT" class="menu-label" data-key="instagram">Instagram</span>
           </a>
           <a id="RLY-B004" href="#" target="_blank" rel="noopener" class="menu-item">
-            <span class="menu-icon">💬</span> <span class="menu-label" data-key="whatsappGroup">WhatsApp Group</span>
+            <span class="menu-icon">💬</span> <span id="RLY-B004-TXT" class="menu-label" data-key="whatsappGroup">WhatsApp Group</span>
           </a>
           <div class="menu-divider"></div>
           <button id="RLY-LC001" class="menu-item btn-menu">
-            <span class="menu-icon">ℹ️</span> <span class="menu-label" data-key="attribution">Attribution</span>
+            <span class="menu-icon">ℹ️</span> <span id="RLY-LC001-TXT" class="menu-label" data-key="attribution">Attribution</span>
           </button>
           <a id="RLY-C001" href="mailto:ahmedbinsalam@outlook.com" class="menu-item">
-            <span class="menu-icon">✉️</span> <span class="menu-label" data-key="email">Email Us</span>
+            <span class="menu-icon">✉️</span> <span id="RLY-C001-TXT" class="menu-label" data-key="email">Email Us</span>
           </a>
           <a id="RLY-C002" href="https://wa.me/201098011523" target="_blank" rel="noopener" class="menu-item">
-            <span class="menu-icon">📱</span> <span class="menu-label" data-key="whatsappContact">Contact WhatsApp</span>
+            <span class="menu-icon">📱</span> <span id="RLY-C002-TXT" class="menu-label" data-key="whatsappContact">Contact WhatsApp</span>
           </a>
         </nav>
       </div>
 
-      <div class="top-bar-center">
+      <div id="RLY-T001-CENTER" class="top-bar-center">
         <!-- RLY-MS001: Center Announcement Banner -->
         <a id="RLY-MS001" href="#" target="_blank" rel="noopener" class="announcement-banner">
-          <span id="announcement-text" class="announcement-text">⚡ Loading Announcement...</span>
+          <span id="RLY-MS001-TXT" class="announcement-text">⚡ Loading Announcement...</span>
         </a>
       </div>
 
-      <div class="top-bar-right">
+      <div id="RLY-T001-RIGHT" class="top-bar-right">
         <!-- RLY-S001: Season Indicator -->
         <div id="RLY-S001" class="season-badge">
           <span class="season-icon">📅</span>
-          <span id="season-text" class="season-text">16 / 09 / 2026 → 16 / 09 / 2027</span>
+          <span id="RLY-S001-TXT" class="season-text">16 / 09 / 2026 → 16 / 09 / 2027</span>
         </div>
 
         <!-- RLY-N001: Notification Trigger -->
         <button id="RLY-N001" class="notification-trigger" aria-label="Notifications">
           <span class="bell-icon">🔔</span>
-          <span class="notification-dot"></span>
+          <span id="RLY-N001-DOT" class="notification-dot"></span>
         </button>
 
         <!-- RLY-LG001: Language Switcher -->
         <button id="RLY-LG001" class="language-switch-btn" aria-label="Switch Language">
-          <span id="lang-indicator" class="lang-text">AR / EN</span>
+          <span id="RLY-LG001-TXT" class="lang-text">AR / EN</span>
         </button>
       </div>
     </header>
 
     <!-- RLY-NP001: Auto-Rotating Single Toast Popup -->
     <aside id="RLY-NP001" class="notification-popup hidden" aria-live="polite">
-      <div class="notification-header">
-        <span class="notification-tag" id="notification-badge">NEW</span>
-        <button id="notification-close-btn" class="close-icon-btn" aria-label="Close notification">×</button>
+      <div id="RLY-NP001-HDR" class="notification-header">
+        <span id="RLY-NP001-BADGE" class="notification-tag">NEW</span>
+        <button id="RLY-NP001-CLOSE" class="close-icon-btn" aria-label="Close notification">×</button>
       </div>
-      <a id="notification-link" href="#" target="_blank" rel="noopener" class="notification-body">
-        <h4 id="notification-title" class="notification-title">Notification Title</h4>
-        <p id="notification-desc" class="notification-desc">Notification details description goes here...</p>
+      <a id="RLY-NP001-LINK" href="#" target="_blank" rel="noopener" class="notification-body">
+        <h4 id="RLY-NP001-TITLE" class="notification-title">Notification Title</h4>
+        <p id="RLY-NP001-DESC" class="notification-desc">Notification details description goes here...</p>
       </a>
-      <div class="notification-progress-bar">
-        <div id="notification-progress" class="progress-fill"></div>
+      <div id="RLY-NP001-BAR" class="notification-progress-bar">
+        <div id="RLY-NP001-PROG" class="progress-fill"></div>
       </div>
     </aside>
 
     <!-- Manual All Notifications Section Overlay -->
-    <div id="notifications-modal" class="modal-overlay hidden" aria-hidden="true">
-      <div class="info-card-window notifications-window">
+    <div id="RLY-NM001" class="modal-overlay hidden" aria-hidden="true">
+      <div id="RLY-NM001-WIN" class="info-card-window notifications-window">
         <div class="window-top-bar">
           <div class="window-controls">
-            <button id="notif-modal-close-btn" class="win-btn close" aria-label="Close"></button>
+            <button id="RLY-NM001-CLOSE" class="win-btn close" aria-label="Close"></button>
           </div>
-          <span class="window-title-text" id="notif-modal-title">Notifications</span>
+          <span id="RLY-NM001-TITLE" class="window-title-text">Notifications</span>
         </div>
-        <div class="notifications-list-body" id="notifications-list-container">
+        <div id="RLY-NM001-LIST" class="notifications-list-body">
           <!-- Populated dynamically by JS -->
         </div>
       </div>
     </div>
 
     <!-- Desktop Area (Primary Windows render inside window-container) -->
-    <main class="desktop-main-area">
-      <div id="window-container" class="window-container"></div>
+    <main id="RLY-MAIN" class="desktop-main-area">
+      <div id="RLY-WC001" class="window-container"></div>
     </main>
 
     <!-- Member Info Modal (Reusable) -->
     <div id="member-info-modal" class="modal-overlay hidden" aria-hidden="true">
-      <div class="info-card-window">
+      <div id="info-modal-window" class="info-card-window">
         <div class="window-top-bar">
           <div class="window-controls">
             <button id="info-close-btn" class="win-btn close" aria-label="Close"></button>
           </div>
-          <span class="window-title-text" id="info-modal-header-title">Member Info</span>
+          <span id="info-modal-header-title" class="window-title-text">Member Info</span>
         </div>
         <div class="info-card-content">
           <div class="info-avatar-box">
@@ -143,12 +143,12 @@
 
     <!-- Members App List Modal (Reusable) -->
     <div id="members-app-modal" class="modal-overlay hidden" aria-hidden="true">
-      <div class="app-card-window">
+      <div id="app-modal-window" class="app-card-window">
         <div class="window-top-bar">
           <div class="window-controls">
             <button id="app-close-btn" class="win-btn close" aria-label="Close"></button>
           </div>
-          <span class="window-title-text" id="app-modal-header-title">Members App Directory</span>
+          <span id="app-modal-header-title" class="window-title-text">Members App Directory</span>
         </div>
         <div class="app-content-padding">
           <ul id="app-members-list" class="members-app-list"></ul>
@@ -158,15 +158,15 @@
 
     <!-- Attribution Modal -->
     <div id="attribution-modal" class="modal-overlay hidden" aria-hidden="true">
-      <div class="info-card-window">
+      <div id="attribution-modal-window" class="info-card-window">
         <div class="window-top-bar">
           <div class="window-controls">
             <button id="attribution-close-btn" class="win-btn close" aria-label="Close"></button>
           </div>
-          <span class="window-title-text" id="attribution-header-title">Attribution</span>
+          <span id="attribution-header-title" class="window-title-text">Attribution</span>
         </div>
         <div class="info-card-content attribution-content">
-          <h3>Rally Society SCU</h3>
+          <h3 id="attribution-title-sub">Rally Society SCU</h3>
           <p id="attribution-text-body">Designed & Built by Ahmed Bin Salama.</p>
         </div>
       </div>
@@ -174,50 +174,50 @@
 
     <!-- RLY-K001: Bottom Dock Containing All 6 Folders + Visit Me Browser Icon (Total 7 items) -->
     <footer id="RLY-K001" class="dock-container">
-      <div class="dock-shelf">
+      <div id="RLY-K001-SHELF" class="dock-shelf">
 
         <!-- Folder 01 (PR Committee) -->
         <button id="RLY-F001" class="dock-folder-item" data-window="RLY-W001">
-          <div class="dock-icon">📁</div>
+          <div id="RLY-ICO-F001" class="dock-icon">📁</div>
           <span id="RLY-TP-F001" class="dock-tooltip folder-label" data-folder="0">PR Committee</span>
         </button>
 
         <!-- Folder 02 (HR Committee) -->
         <button id="RLY-F002" class="dock-folder-item" data-window="RLY-W002">
-          <div class="dock-icon">📁</div>
+          <div id="RLY-ICO-F002" class="dock-icon">📁</div>
           <span id="RLY-TP-F002" class="dock-tooltip folder-label" data-folder="1">HR Committee</span>
         </button>
 
         <!-- Folder 03 (Entrepreneurship Committee) -->
         <button id="RLY-F003" class="dock-folder-item" data-window="RLY-W003">
-          <div class="dock-icon">📁</div>
+          <div id="RLY-ICO-F003" class="dock-icon">📁</div>
           <span id="RLY-TP-F003" class="dock-tooltip folder-label" data-folder="2">Entrepreneurship Committee</span>
         </button>
 
         <!-- Folder 04 (Operations Committee) -->
         <button id="RLY-F004" class="dock-folder-item" data-window="RLY-W004">
-          <div class="dock-icon">📁</div>
+          <div id="RLY-ICO-F004" class="dock-icon">📁</div>
           <span id="RLY-TP-F004" class="dock-tooltip folder-label" data-folder="3">Operations Committee</span>
         </button>
 
         <!-- Folder 05 (Marketing Committee) -->
         <button id="RLY-F005" class="dock-folder-item" data-window="RLY-W005">
-          <div class="dock-icon">📁</div>
+          <div id="RLY-ICO-F005" class="dock-icon">📁</div>
           <span id="RLY-TP-F005" class="dock-tooltip folder-label" data-folder="4">Marketing Committee</span>
         </button>
 
         <!-- Folder 06 (Administration) -->
         <button id="RLY-F006" class="dock-folder-item folder-board" data-window="RLY-W006">
-          <div class="dock-icon">💼</div>
+          <div id="RLY-ICO-F006" class="dock-icon">💼</div>
           <span id="RLY-TP-F006" class="dock-tooltip folder-label" data-folder="5">Administration</span>
         </button>
 
-        <div class="dock-divider"></div>
+        <div id="RLY-K001-DIV" class="dock-divider"></div>
 
         <!-- RLY-K002: Safari/Browser "Visit Me" Dock Shortcut -->
         <a id="RLY-K002" href="https://www.linkedin.com/in/ahmed-bin-salama" target="_blank" rel="noopener" class="dock-item">
-          <div class="dock-icon browser-icon">🧭</div>
-          <span id="visit-me-tooltip" class="dock-tooltip">Visit Me</span>
+          <div id="RLY-ICO-K002" class="dock-icon browser-icon">🧭</div>
+          <span id="RLY-TP-K002" class="dock-tooltip">Visit Me</span>
         </a>
 
       </div>
