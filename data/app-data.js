@@ -272,7 +272,7 @@ export const appData = {
           studies: { en: "Medicine", ar: "الطب البشري" },
           interests: { en: "Entrepreneurship and AI", ar: "ريادة الأعمال والذكاء الاصطناعي" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Ahmed-Bin-Salama-as-Head-of-Marketing.webp",
+          image: "assets/people/Ahmed-Bin-Salama-as-Head-of-Marketing.jpeg",
           contactUrl: "mailto:dr.a7med.email@gmail.com"
         },
         {
