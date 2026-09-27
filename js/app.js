@@ -26,19 +26,19 @@ class RallyDesktopApp {
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
     // Update Language Toggle Button
-    const langBtnText = document.getElementById('lang-indicator');
+    const langBtnText = document.getElementById('RLY-LG001-TXT');
     if (langBtnText) {
       langBtnText.textContent = lang === 'ar' ? 'English' : 'العربية';
     }
 
     // Update Rally Logo Text
-    const logoTextLabel = document.getElementById('logo-text-label');
+    const logoTextLabel = document.getElementById('RLY-L001-TXT');
     if (logoTextLabel && appData.logoText) {
       logoTextLabel.textContent = appData.logoText[lang];
     }
 
     // Update Center Announcement Banner
-    const annText = document.getElementById('announcement-text');
+    const annText = document.getElementById('RLY-MS001-TXT');
     const annBtn = document.getElementById('RLY-MS001');
     if (annText && appData.announcement) {
       annText.textContent = appData.announcement[lang];
@@ -46,7 +46,7 @@ class RallyDesktopApp {
     }
 
     // Update Season Badge
-    const seasonText = document.getElementById('season-text');
+    const seasonText = document.getElementById('RLY-S001-TXT');
     if (seasonText) {
       seasonText.textContent = appData.season;
     }
@@ -68,7 +68,7 @@ class RallyDesktopApp {
     });
 
     // Update Visit Me Tooltip
-    const visitMeTooltip = document.getElementById('visit-me-tooltip');
+    const visitMeTooltip = document.getElementById('RLY-TP-K002');
     if (visitMeTooltip && appData.dock.visitMe) {
       visitMeTooltip.textContent = appData.dock.visitMe.label[lang];
     }
@@ -134,9 +134,9 @@ class RallyDesktopApp {
       attrCloseBtn.addEventListener('click', () => this.closeModal('attribution-modal'));
     }
 
-    const notifModalCloseBtn = document.getElementById('notif-modal-close-btn');
+    const notifModalCloseBtn = document.getElementById('RLY-NM001-CLOSE');
     if (notifModalCloseBtn) {
-      notifModalCloseBtn.addEventListener('click', () => this.closeModal('notifications-modal'));
+      notifModalCloseBtn.addEventListener('click', () => this.closeModal('RLY-NM001'));
     }
 
     const attrBtn = document.getElementById('RLY-LC001');
@@ -160,7 +160,7 @@ class RallyDesktopApp {
     }
 
     // Single Toast Popup Close Button
-    const notifClose = document.getElementById('notification-close-btn');
+    const notifClose = document.getElementById('RLY-NP001-CLOSE');
     if (notifClose) {
       notifClose.addEventListener('click', () => {
         const notifPanel = document.getElementById('RLY-NP001');
@@ -185,9 +185,7 @@ class RallyDesktopApp {
     setUrl('RLY-K002', appData.dock.visitMe.url);
   }
 
-  // Notification Timing Engine:
-  // 3 Active Notifications (RLY-N101, RLY-N102, RLY-N103)
-  // 0s -> N101 (3s) | 15s -> N102 (3s) | 30s -> N103 (3s) | 45s -> N101 repeat cycle
+  // Notification Timing Engine
   startNotificationCycle() {
     const cycleNotifications = () => {
       this.displayNotificationToast(this.notificationCycleIndex);
@@ -204,11 +202,11 @@ class RallyDesktopApp {
     if (!notif) return;
 
     const panel = document.getElementById('RLY-NP001');
-    const title = document.getElementById('notification-title');
-    const desc = document.getElementById('notification-desc');
-    const badge = document.getElementById('notification-badge');
-    const link = document.getElementById('notification-link');
-    const progress = document.getElementById('notification-progress');
+    const title = document.getElementById('RLY-NP001-TITLE');
+    const desc = document.getElementById('RLY-NP001-DESC');
+    const badge = document.getElementById('RLY-NP001-BADGE');
+    const link = document.getElementById('RLY-NP001-LINK');
+    const progress = document.getElementById('RLY-NP001-PROG');
 
     if (title) title.textContent = notif.title[this.currentLang];
     if (desc) desc.textContent = notif.description[this.currentLang];
@@ -235,9 +233,9 @@ class RallyDesktopApp {
 
   // Open Full Notifications Section Modal
   openNotificationsModal() {
-    const modal = document.getElementById('notifications-modal');
-    const listContainer = document.getElementById('notifications-list-container');
-    const modalTitle = document.getElementById('notif-modal-title');
+    const modal = document.getElementById('RLY-NM001');
+    const listContainer = document.getElementById('RLY-NM001-LIST');
+    const modalTitle = document.getElementById('RLY-NM001-TITLE');
     if (!modal || !listContainer) return;
 
     const lang = this.currentLang;
@@ -245,12 +243,12 @@ class RallyDesktopApp {
 
     const activeNotifs = appData.notifications.slice(0, 3);
     listContainer.innerHTML = activeNotifs.map(n => `
-      <a href="${n.url || appData.defaultUrl}" target="_blank" rel="noopener" class="notif-card-item">
+      <a id="${n.id}" href="${n.url || appData.defaultUrl}" target="_blank" rel="noopener" class="notif-card-item">
         <div class="notif-card-header">
-          <span class="notification-tag">${n.badge[lang]}</span>
+          <span id="${n.id}-BADGE" class="notification-tag">${n.badge[lang]}</span>
         </div>
-        <h4 style="font-size:14px; font-weight:700;">${n.title[lang]}</h4>
-        <p style="font-size:12px; color:var(--text-secondary);">${n.description[lang]}</p>
+        <h4 id="${n.id}-TITLE" style="font-size:14px; font-weight:700;">${n.title[lang]}</h4>
+        <p id="${n.id}-DESC" style="font-size:12px; color:var(--text-secondary);">${n.description[lang]}</p>
       </a>
     `).join('');
 
@@ -264,41 +262,47 @@ class RallyDesktopApp {
   }
 
   closeWindow() {
-    const winContainer = document.getElementById('window-container');
+    const winContainer = document.getElementById('RLY-WC001');
     if (winContainer) winContainer.innerHTML = '';
     this.activeWindowId = null;
   }
 
   renderWindow(folderData) {
-    const winContainer = document.getElementById('window-container');
+    const winContainer = document.getElementById('RLY-WC001');
     if (!winContainer) return;
 
     const lang = this.currentLang;
     const isBoard = folderData.type === 'board';
 
-    // Committee stickers vs Administration stickers
-    // For Committees: position only on sticker
-    // For Administration: name on top, position underneath
+    // Board Stickers renderer using individual derived DOM IDs
+    // All stickers render tooltip RLY-TP-{mCode} containing member's exact name
     const membersHtml = folderData.members.map(m => {
+      const code = m.id.startsWith('RLY-') ? m.id.slice(4) : m.id; // e.g. M001
+      const stkId = `RLY-STK-${code}`;
+      const imgId = `RLY-IMG-${code}`;
+      const nameId = `RLY-TXT-NAME-${code}`;
+      const titleId = `RLY-TXT-TITLE-${code}`;
+      const tpId = `RLY-TP-${code}`;
+
       if (isBoard) {
         return `
-          <div id="RLY-STK-${m.id}" class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
-            <span id="RLY-TP-${m.id}" class="sticker-tooltip">${m.name[lang]}</span>
+          <div id="${stkId}" class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
+            <span id="${tpId}" class="sticker-tooltip">${m.name[lang]}</span>
             <div class="sticker-img-wrapper">
-              <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
+              <img id="${imgId}" src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
             </div>
-            <span class="sticker-name">${m.name[lang]}</span>
-            <span class="sticker-title">${m.title[lang]}</span>
+            <span id="${nameId}" class="sticker-name">${m.name[lang]}</span>
+            <span id="${titleId}" class="sticker-title">${m.title[lang]}</span>
           </div>
         `;
       } else {
         return `
-          <div id="RLY-STK-${m.id}" class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
-            <span id="RLY-TP-${m.id}" class="sticker-tooltip">${m.name[lang]}</span>
+          <div id="${stkId}" class="sticker-card" data-member-id="${m.id}" data-info-id="${m.infoId}">
+            <span id="${tpId}" class="sticker-tooltip">${m.name[lang]}</span>
             <div class="sticker-img-wrapper">
-              <img src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
+              <img id="${imgId}" src="${m.image}" alt="${m.title[lang]}" class="sticker-img">
             </div>
-            <span class="sticker-name">${m.title[lang]}</span>
+            <span id="${nameId}" class="sticker-name">${m.title[lang]}</span>
           </div>
         `;
       }
@@ -307,8 +311,8 @@ class RallyDesktopApp {
     let actionHeaderHtml = '';
     if (!isBoard) {
       actionHeaderHtml = `
-        <div class="committee-top-header">
-          <img src="${folderData.artwork}" alt="${folderData.name[lang]}" class="committee-art-img">
+        <div id="RLY-HDR-${folderData.windowId}" class="committee-top-header">
+          <img id="RLY-ART-${folderData.windowId}" src="${folderData.artwork}" alt="${folderData.name[lang]}" class="committee-art-img">
           <div class="committee-actions">
             <a id="${folderData.joinButton.id}" href="${folderData.joinButton.url}" target="_blank" rel="noopener" class="btn-join">
               ${folderData.joinButton.label[lang]}
@@ -323,17 +327,17 @@ class RallyDesktopApp {
 
     const windowMarkup = `
       <div id="${folderData.windowId}" class="mac-window">
-        <div class="window-top-bar">
+        <div id="RLY-TB-${folderData.windowId}" class="window-top-bar">
           <div class="window-controls">
-            <button class="win-btn close close-window-btn" aria-label="Close Window"></button>
-            <button class="win-btn minimize" aria-label="Minimize Window"></button>
-            <button class="win-btn maximize" aria-label="Maximize Window"></button>
+            <button id="RLY-CLOSE-${folderData.windowId}" class="win-btn close close-window-btn" aria-label="Close Window"></button>
+            <button id="RLY-MIN-${folderData.windowId}" class="win-btn minimize" aria-label="Minimize Window"></button>
+            <button id="RLY-MAX-${folderData.windowId}" class="win-btn maximize" aria-label="Maximize Window"></button>
           </div>
-          <span class="window-title-text">${folderData.name[lang]}</span>
+          <span id="RLY-TITLE-${folderData.windowId}" class="window-title-text">${folderData.name[lang]}</span>
         </div>
-        <div class="window-body">
+        <div id="RLY-BODY-${folderData.windowId}" class="window-body">
           ${actionHeaderHtml}
-          <div class="stickers-container">
+          <div id="RLY-STK-CTR-${folderData.windowId}" class="stickers-container">
             ${membersHtml}
           </div>
         </div>
@@ -366,30 +370,56 @@ class RallyDesktopApp {
     }
   }
 
-  // Member Info Modal Popup
+  // Member Info Modal Popup - Traceable to RLY-Ixxx
   openMemberInfoModal(member) {
     const modal = document.getElementById('member-info-modal');
+    const infoWin = document.getElementById('info-modal-window');
     if (!modal) return;
 
     const lang = this.currentLang;
-    const nameEl = document.getElementById('info-member-name');
-    const roleEl = document.getElementById('info-member-role');
-    const commEl = document.getElementById('info-member-committee');
-    const studiesEl = document.getElementById('info-member-studies');
-    const interestsEl = document.getElementById('info-member-interests');
-    const bioEl = document.getElementById('info-member-bio');
-    const imgEl = document.getElementById('info-member-img');
-    const linkEl = document.getElementById('info-member-link');
+    const infoId = member.infoId; // e.g. RLY-I001 .. RLY-I019
 
-    if (nameEl) nameEl.textContent = member.name[lang];
-    if (roleEl) roleEl.textContent = member.title[lang];
-    if (commEl) commEl.textContent = `${lang === 'ar' ? 'اللجنة: ' : 'Committee: '}${member.committee[lang]}`;
-    if (studiesEl) studiesEl.textContent = `${lang === 'ar' ? 'الدراسة: ' : 'Studies: '}${member.studies[lang]}`;
-    if (interestsEl) interestsEl.textContent = `${lang === 'ar' ? 'الاهتمامات: ' : 'Interests: '}${member.interests[lang]}`;
-    if (bioEl) bioEl.textContent = member.bio[lang];
-    if (imgEl) imgEl.src = member.image;
+    if (infoWin) infoWin.id = `${infoId}-WINDOW`;
 
+    const nameEl = document.getElementById('info-member-name') || document.querySelector('[id$="-NAME"]');
+    const roleEl = document.getElementById('info-member-role') || document.querySelector('[id$="-TITLE"]');
+    const commEl = document.getElementById('info-member-committee') || document.querySelector('[id$="-COMMITTEE"]');
+    const studiesEl = document.getElementById('info-member-studies') || document.querySelector('[id$="-STUDIES"]');
+    const interestsEl = document.getElementById('info-member-interests') || document.querySelector('[id$="-INTERESTS"]');
+    const bioEl = document.getElementById('info-member-bio') || document.querySelector('[id$="-BIO"]');
+    const imgEl = document.getElementById('info-member-img') || document.querySelector('[id$="-IMAGE"]');
+    const linkEl = document.getElementById('info-member-link') || document.querySelector('[id$="-CONTACT"]');
+
+    if (nameEl) {
+      nameEl.id = `${infoId}-NAME`;
+      nameEl.textContent = member.name[lang];
+    }
+    if (roleEl) {
+      roleEl.id = `${infoId}-TITLE`;
+      roleEl.textContent = member.title[lang];
+    }
+    if (commEl) {
+      commEl.id = `${infoId}-COMMITTEE`;
+      commEl.textContent = `${lang === 'ar' ? 'اللجنة: ' : 'Committee: '}${member.committee[lang]}`;
+    }
+    if (studiesEl) {
+      studiesEl.id = `${infoId}-STUDIES`;
+      studiesEl.textContent = `${lang === 'ar' ? 'الدراسة: ' : 'Studies: '}${member.studies[lang]}`;
+    }
+    if (interestsEl) {
+      interestsEl.id = `${infoId}-INTERESTS`;
+      interestsEl.textContent = `${lang === 'ar' ? 'الاهتمامات: ' : 'Interests: '}${member.interests[lang]}`;
+    }
+    if (bioEl) {
+      bioEl.id = `${infoId}-BIO`;
+      bioEl.textContent = member.bio[lang];
+    }
+    if (imgEl) {
+      imgEl.id = `${infoId}-IMAGE`;
+      imgEl.src = member.image;
+    }
     if (linkEl) {
+      linkEl.id = `${infoId}-CONTACT`;
       linkEl.href = member.contactUrl || appData.defaultEmail;
       linkEl.textContent = lang === 'ar'
         ? `تواصل مع ${member.title[lang]}`
@@ -399,7 +429,7 @@ class RallyDesktopApp {
     modal.classList.remove('hidden');
   }
 
-  // Members Directory App Modal - Displays Name-Only List with Gender Icons
+  // Members Directory App Modal - Separated from Board People
   openMembersAppModal(folderData) {
     const modal = document.getElementById('members-app-modal');
     const list = document.getElementById('app-members-list');
@@ -409,16 +439,27 @@ class RallyDesktopApp {
     const lang = this.currentLang;
     if (title) title.textContent = `${folderData.name[lang]} - ${folderData.app.name[lang]}`;
 
-    // Simple member list using folderData.membersDirectory (separated from Board people)
-    const membersDir = folderData.membersDirectory ? folderData.membersDirectory.members : [];
+    const membersDir = folderData.membersDirectory;
+    const dirId = membersDir ? membersDir.id : 'RLY-MD000';
 
-    list.innerHTML = membersDir.map(m => {
+    // Set list container ID to directory ID (RLY-MD001 .. RLY-MD005)
+    list.id = dirId;
+
+    const membersList = membersDir ? membersDir.members : [];
+
+    list.innerHTML = membersList.map((m, idx) => {
+      const itemNum = idx + 1;
+      const itemId = `RLY-MDI-${dirId}-${itemNum}`;
+      const genderIconId = `RLY-MDI-GENDER-${dirId}-${itemNum}`;
+      const nameTxtId = `RLY-MDI-NAME-${dirId}-${itemNum}`;
+
       const genderIcon = m.gender === 'female' ? '♀' : '♂';
       const genderClass = m.gender === 'female' ? 'gender-female' : 'gender-male';
+
       return `
-        <li class="members-app-item" id="${folderData.membersDirectory ? folderData.membersDirectory.id : ''}">
-          <span class="member-gender-icon ${genderClass}" aria-hidden="true">${genderIcon}</span>
-          <span class="member-name-text">${m.name}</span>
+        <li id="${itemId}" class="members-app-item">
+          <span id="${genderIconId}" class="member-gender-icon ${genderClass}" aria-hidden="true">${genderIcon}</span>
+          <span id="${nameTxtId}" class="member-name-text">${m.name}</span>
         </li>
       `;
     }).join('');

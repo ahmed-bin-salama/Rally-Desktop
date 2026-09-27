@@ -46,7 +46,7 @@ html, body {
   overflow: hidden;
 }
 
-/* Desktop Wallpaper (RLY-D002) */
+/* Desktop Wallpaper (RLY-D002) - Static Wallpaper Rule */
 .desktop-background {
   position: absolute;
   top: 0;
@@ -58,6 +58,9 @@ html, body {
   background-repeat: no-repeat;
   background-color: #0d1527;
   z-index: 1;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
 }
 
 .background-overlay {
@@ -770,8 +773,10 @@ html[dir="rtl"] .notification-popup {
   display: flex;
   justify-content: center;
   padding-bottom: 12px;
+  padding-top: 32px; /* Top clearance for folder tooltips */
   max-width: 100vw;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 .dock-shelf {
@@ -780,15 +785,24 @@ html[dir="rtl"] .notification-popup {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 22px;
-  padding: 16px 16px 8px 16px;
+  padding: 12px 16px 8px 16px;
   display: flex;
   align-items: flex-end;
+  justify-content: flex-start;
   gap: 14px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
   max-width: calc(100vw - 16px);
   overflow-x: auto;
+  overflow-y: visible;
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+/* Desktop Dock Width (approx. 10 icon positions capacity for 7 actual items) */
+@media (min-width: 769px) {
+  .dock-shelf {
+    width: 680px;
+  }
 }
 
 .dock-shelf::-webkit-scrollbar {
@@ -805,8 +819,9 @@ html[dir="rtl"] .notification-popup {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding-top: 36px;
+  padding-top: 28px;
   flex-shrink: 0;
+  overflow: visible;
 }
 
 .dock-icon {
@@ -822,7 +837,7 @@ html[dir="rtl"] .notification-popup {
 /* Tooltip for Dock Folders & Browser Shortcut */
 .dock-tooltip {
   position: absolute;
-  top: 4px;
+  top: -6px;
   left: 50%;
   transform: translateX(-50%) translateY(4px);
   background: rgba(15, 23, 42, 0.9);
@@ -841,7 +856,7 @@ html[dir="rtl"] .notification-popup {
 
 .dock-folder-item:hover .dock-tooltip, .dock-item:hover .dock-tooltip {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .dock-divider {
@@ -909,9 +924,14 @@ html[dir="rtl"] .notification-popup {
   .season-text {
     display: none;
   }
+  .dock-container {
+    padding-top: 24px;
+  }
   .dock-shelf {
-    gap: 10px;
-    padding: 6px 12px;
+    width: 100%;
+    justify-content: space-around;
+    gap: 8px;
+    padding: 8px 10px;
   }
   .dock-icon {
     font-size: 28px;
@@ -1001,8 +1021,8 @@ html[dir="rtl"] .notification-popup {
 /* Narrow Screen Adjustments (max-width: 420px) */
 @media (max-width: 420px) {
   .dock-shelf {
-    gap: 6px;
-    padding: 5px 8px;
+    gap: 4px;
+    padding: 6px 6px;
     border-radius: 18px;
   }
   .dock-icon {
@@ -1045,6 +1065,7 @@ html[dir="rtl"] .notification-popup {
   }
   .dock-container {
     padding-bottom: 4px;
+    padding-top: 20px;
   }
   .dock-shelf {
     padding: 4px 8px;

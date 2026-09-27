@@ -45,8 +45,7 @@ export const appData = {
     {
       id: "RLY-N101",
       title: { en: "🎤 Meet the Speakers of Rally Festival", ar: "🎤 تعرفوا على سبيكرز مهرجان رالي " },
-      description: { en: "The Rally Festival Speakers page is now live, featuring their photos, bios, and Instagram & LinkedIn profiles. Take a look and get to know the speakers joining us at the festival.", ar: "اتضافت صفحة المتحدثين الخاصة برالي فيستيفال، فيها صورهم، نبذة عن كل متحدث وحساباتهم على إنستجرام ولينكدإن. خدو نظرة واتعرفوا على المتحدثين المشاركين في المهرجان.
-" },
+      description: { en: "The Rally Festival Speakers page is now live, featuring their photos, bios, and Instagram & LinkedIn profiles. Take a look and get to know the speakers joining us at the festival.", ar: "اتضافت صفحة المتحدثين الخاصة برالي فيستيفال، فيها صورهم، نبذة عن كل متحدث وحساباتهم على إنستجرام ولينكدإن. خدو نظرة واتعرفوا على المتحدثين المشاركين في المهرجان." },
       badge: { en: "EVENT", ar: "فعالية" },
       url: "https://doctor-ninyawe.notion.site/rally-festival-speakers"
     },
