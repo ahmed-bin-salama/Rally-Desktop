@@ -357,8 +357,8 @@ export const appData = {
           studies: { en: "", ar: "" },
           interests: { en: "", ar: "" },
           bio: { en: "", ar: "" },
-          image: "assets/people/manager-01.svg",
-          contactUrl: "mailto:ahmedbinsalama@example.com"
+          image: "assets/people/Ahmed Shuaib-as-President.png",
+          contactUrl: "mailto:ahmed2sho3ib@gmail.com"
         },
         {
           id: "RLY-M017",
