@@ -74,6 +74,14 @@ export const appData = {
       artwork: "assets/committees/committee-01.svg",
       joinButton: { id: "RLY-J001", label: { en: "Join PR Committee", ar: "انضم للجنة العلاقات العامة" }, url: "https://ahmed-bin-salama.github.io/Rally-Desktop/" },
       app: { id: "RLY-A001", windowId: "RLY-AW001", name: { en: "Members Directory", ar: "دليل الأعضاء" } },
+      membersDirectory: {
+        id: "RLY-MD001",
+        members: [
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "male" }
+        ]
+      },
       members: [
         {
           id: "RLY-M001",
@@ -96,7 +104,7 @@ export const appData = {
           studies: { en: "Communications Technology", ar: "تكنولوجيا الاتصالات" },
           interests: { en: "Technology, reading", ar: "التكنولوجيا والقراءة" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Afnan-Rashed-as-Vice-Head-of-PR.png",
+          image: "assets/people/Afnan-Rashed-as-Vice-Head-of-PR-removebg-preview.png",
           contactUrl: "mailto:afnanelawody6@gmail.com"
         },
         {
@@ -121,6 +129,14 @@ export const appData = {
       artwork: "assets/committees/committee-02.svg",
       joinButton: { id: "RLY-J002", label: { en: "Join HR Committee", ar: "انضم للجنة الموارد البشرية" }, url: "https://ahmed-bin-salama.github.io/Rally-Desktop/" },
       app: { id: "RLY-A002", windowId: "RLY-AW002", name: { en: "Members Directory", ar: "دليل الأعضاء" } },
+      membersDirectory: {
+        id: "RLY-MD002",
+        members: [
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "male" }
+        ]
+      },
       members: [
         {
           id: "RLY-M004",
@@ -131,7 +147,7 @@ export const appData = {
           studies: { en: "AI & Cloud Engineering", ar: "هندسة الذكاء الاصطناعي والسحابة" },
           interests: { en: "Learning, padel, Barca, and Formula One", ar: "التعلم والباديل وبرشلونة والفورمولا ١" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Eyad-Mohamed-as-Head-of-HR.png",
+          image: "assets/people/Eyad-Mohamed-as-Head-of-HR-removebg-preview.png",
           contactUrl: "mailto:eyadayad066@gmail.com"
         },
         {
@@ -143,7 +159,7 @@ export const appData = {
           studies: { en: "Communications Technology", ar: "تكنولوجيا الاتصالات" },
           interests: { en: "Kickboxing, drawing", ar: "الكيك بوكسينغ والرسم" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Eman-Ayman-as-Vice-Head-of-HR.png",
+          image: "assets/people/Eman-Ayman-as-Vice-Head-of-HR-removebg-preview.png",
           contactUrl: "mailto:emanayman3313@gmail.com"
         },
         {
@@ -168,6 +184,14 @@ export const appData = {
       artwork: "assets/committees/committee-03.svg",
       joinButton: { id: "RLY-J003", label: { en: "Join Entrepreneurship", ar: "انضم للجنة ريادة الأعمال" }, url: "https://ahmed-bin-salama.github.io/Rally-Desktop/" },
       app: { id: "RLY-A003", windowId: "RLY-AW003", name: { en: "Members Directory", ar: "دليل الأعضاء" } },
+      membersDirectory: {
+        id: "RLY-MD003",
+        members: [
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "male" }
+        ]
+      },
       members: [
         {
           id: "RLY-M007",
@@ -178,7 +202,7 @@ export const appData = {
           studies: { en: "Mechatronics", ar: "ميكاترونكس" },
           interests: { en: "Mechatronics", ar: "ميكاترونكس" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Roba-Hesham-as-Head-of-Entrepreneurship.png",
+          image: "assets/people/Roba-Hesham-as-Head-of-Entrepreneurship-removebg-preview.png",
           contactUrl: "mailto:robamossa15@gmail.com"
         },
         {
@@ -190,7 +214,7 @@ export const appData = {
           studies: { en: "Mechatronics Engineering", ar: "هندسة الميكاترونكس" },
           interests: { en: "Walking and reading", ar: "المشي والقراءة" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Basmala-Mohamed-as-Vice-Head-of-Entrepreneurship.png",
+          image: "assets/people/Basmala-Mohamed-as-Vice-Head-of-Entrepreneurship-removebg-preview.png",
           contactUrl: "mailto:bassmalamohamed331@gmail.com"
         },
         {
@@ -202,7 +226,7 @@ export const appData = {
           studies: { en: "Mechatronics", ar: "ميكاترونكس" },
           interests: { en: "Entrepreneurship, reading", ar: "ريادة الأعمال والقراءة" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Fatma-Osama-as-Vice-Head-of-ntrepreneurship.png",
+          image: "assets/people/Fatma-Osama-as-Vice-Head-of-ntrepreneurship-removebg-preview.png",
           contactUrl: "mailto:allafatma437@gmail.com"
         }
       ]
@@ -215,6 +239,14 @@ export const appData = {
       artwork: "assets/committees/committee-04.svg",
       joinButton: { id: "RLY-J004", label: { en: "Join Operations Committee", ar: "انضم للجنة العمليات" }, url: "https://ahmed-bin-salama.github.io/Rally-Desktop/" },
       app: { id: "RLY-A004", windowId: "RLY-AW004", name: { en: "Members Directory", ar: "دليل الأعضاء" } },
+      membersDirectory: {
+        id: "RLY-MD004",
+        members: [
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "male" }
+        ]
+      },
       members: [
         {
           id: "RLY-M010",
@@ -225,7 +257,7 @@ export const appData = {
           studies: { en: "Electronics", ar: "إلكترونيات" },
           interests: { en: "Conference & Event Presenting, Public Speaking, Leadership, Media, Design", ar: "التقديم والحديث العام والقيادة والإعلام والتصميم" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Nour-Farouk-as-Head-of-Operation.png",
+          image: "assets/people/Nour-Farouk-as-Head-of-Operation-removebg-preview.png",
           contactUrl: "mailto:nourfarouk731@gmail.com"
         },
         {
@@ -262,6 +294,14 @@ export const appData = {
       artwork: "assets/committees/committee-05.svg",
       joinButton: { id: "RLY-J005", label: { en: "Join Marketing Committee", ar: "انضم للجنة التسويق" }, url: "https://ahmed-bin-salama.github.io/Rally-Desktop/" },
       app: { id: "RLY-A005", windowId: "RLY-AW005", name: { en: "Members Directory", ar: "دليل الأعضاء" } },
+      membersDirectory: {
+        id: "RLY-MD005",
+        members: [
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "female" },
+          { name: "Member", gender: "male" }
+        ]
+      },
       members: [
         {
           id: "RLY-M013",
@@ -272,7 +312,7 @@ export const appData = {
           studies: { en: "Medicine", ar: "الطب البشري" },
           interests: { en: "Entrepreneurship and AI", ar: "ريادة الأعمال والذكاء الاصطناعي" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Ahmed-Bin-Salama-as-Head-of-Marketing.png",
+          image: "assets/people/Ahmed-Bin-Salama-as-Head-of-Marketing-removebg-preview.png",
           contactUrl: "mailto:dr.a7med.email@gmail.com"
         },
         {
@@ -284,7 +324,7 @@ export const appData = {
           studies: { en: "Communication Engineering", ar: "هندسة الاتصالات" },
           interests: { en: "3D/games and swimming", ar: "الثلاثي الأبعاد والألعاب والسباحة" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Abdulrahman-Sabri-as-Vice-Head-of-Marketing.png",
+          image: "assets/people/Abdulrahman-Sabri-as-Vice-Head-of-Marketing-removebg-preview.png",
           contactUrl: "mailto:bodaaboy@gmail.com"
         },
         {
@@ -296,7 +336,7 @@ export const appData = {
           studies: { en: "Commerce", ar: "التجارة" },
           interests: { en: "Business, Entrepreneurship and Chess", ar: "الأعمال وريادة الأعمال والشطرنج" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Menna-Shawky-as-Vice-Head-of-Marketing.png",
+          image: "assets/people/member-15.svg",
           contactUrl: "mailto:mennashawky959@gmail.com"
         }
       ]
@@ -329,7 +369,7 @@ export const appData = {
           studies: { en: "Mechatronics Engineering", ar: "هندسة الميكاترونكس" },
           interests: { en: "Writing, music, and arts", ar: "الكتابة والموسيقى والفنون" },
           bio: { en: "", ar: "" },
-          image: "assets/people/Mohamed-Abdulfattah-as-Vice-of-president.png",
+          image: "assets/people/Mohamed-Abdulfattah-as-Vice-of-president-removebg-preview.png",
           contactUrl: "mailto:ahmedbinsalama@example.com"
         },
         {
@@ -342,6 +382,18 @@ export const appData = {
           interests: { en: "", ar: "" },
           bio: { en: "", ar: "" },
           image: "assets/people/Afnan-Barakat-as-Coordinator.png",
+          contactUrl: "mailto:ahmedbinsalama@example.com"
+        },
+        {
+          id: "RLY-M019",
+          infoId: "RLY-I019",
+          name: { en: "Simone Gamal", ar: "سيمون جمال" },
+          title: { en: "Coordinator", ar: "المنسق" },
+          committee: { en: "Administration", ar: "الإدارة" },
+          studies: { en: "", ar: "" },
+          interests: { en: "", ar: "" },
+          bio: { en: "", ar: "" },
+          image: "assets/people/Simone-Gamal-as-Coordinator.png",
           contactUrl: "mailto:ahmedbinsalama@example.com"
         }
       ]

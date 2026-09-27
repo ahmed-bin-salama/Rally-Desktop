@@ -397,7 +397,7 @@ class RallyDesktopApp {
     modal.classList.remove('hidden');
   }
 
-  // Members Directory App Modal - Displays Name-Only List
+  // Members Directory App Modal - Displays Name-Only List with Gender Icons
   openMembersAppModal(folderData) {
     const modal = document.getElementById('members-app-modal');
     const list = document.getElementById('app-members-list');
@@ -407,12 +407,19 @@ class RallyDesktopApp {
     const lang = this.currentLang;
     if (title) title.textContent = `${folderData.name[lang]} - ${folderData.app.name[lang]}`;
 
-    // Name-only list, no positions or action buttons beside names
-    list.innerHTML = folderData.members.map(m => `
-      <li class="members-app-item">
-        <span>${m.name[lang]}</span>
-      </li>
-    `).join('');
+    // Simple member list using folderData.membersDirectory (separated from Board people)
+    const membersDir = folderData.membersDirectory ? folderData.membersDirectory.members : [];
+
+    list.innerHTML = membersDir.map(m => {
+      const genderIcon = m.gender === 'female' ? '♀' : '♂';
+      const genderClass = m.gender === 'female' ? 'gender-female' : 'gender-male';
+      return `
+        <li class="members-app-item" id="${folderData.membersDirectory ? folderData.membersDirectory.id : ''}">
+          <span class="member-gender-icon ${genderClass}" aria-hidden="true">${genderIcon}</span>
+          <span class="member-name-text">${m.name}</span>
+        </li>
+      `;
+    }).join('');
 
     modal.classList.remove('hidden');
   }
