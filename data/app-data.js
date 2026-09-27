@@ -1,6 +1,6 @@
 export const appData = {
   defaultUrl: "https://ahmed-bin-salama.github.io/Rally-Desktop/",
-  defaultEmail: "mailto:ahmedbinsalama@example.com",
+  defaultEmail: "mailto:ahmedbinsalama@outlook.com",
 
   logoText: {
     en: "Rally Society SCU",
@@ -78,7 +78,7 @@ export const appData = {
         {
           id: "RLY-M001",
           infoId: "RLY-I001",
-          name: { en: "Member 01", ar: "عضو ١" },
+          name: { en: "Head of PR", ar: "رئيس لجنة العلاقات العامة" },
           title: { en: "Head of PR", ar: "رئيس لجنة العلاقات العامة" },
           committee: { en: "PR Committee", ar: "لجنة العلاقات العامة" },
           studies: { en: "Suez Canal University", ar: "جامعة قناة السويس" },
@@ -102,7 +102,7 @@ export const appData = {
         {
           id: "RLY-M003",
           infoId: "RLY-I003",
-          name: { en: "Member 03", ar: "عضو ٣" },
+          name: { en: "Vice Head of PR", ar: "نائب رئيس لجنة العلاقات العامة" },
           title: { en: "Vice Head of PR", ar: "نائب رئيس لجنة العلاقات العامة" },
           committee: { en: "PR Committee", ar: "لجنة العلاقات العامة" },
           studies: { en: "Suez Canal University", ar: "جامعة قناة السويس" },
@@ -149,7 +149,7 @@ export const appData = {
         {
           id: "RLY-M006",
           infoId: "RLY-I006",
-          name: { en: "Member 06", ar: "عضو ٦" },
+          name: { en: "Vice Head of HR", ar: "نائب رئيس لجنة الموارد البشرية" },
           title: { en: "Vice Head of HR", ar: "نائب رئيس لجنة الموارد البشرية" },
           committee: { en: "HR Committee", ar: "لجنة الموارد البشرية" },
           studies: { en: "Suez Canal University", ar: "جامعة قناة السويس" },
@@ -231,7 +231,7 @@ export const appData = {
         {
           id: "RLY-M011",
           infoId: "RLY-I011",
-          name: { en: "Member 11", ar: "عضو ١١" },
+          name: { en: "Vice Head of Operations", ar: "نائب رئيس لجنة العمليات" },
           title: { en: "Vice Head of Operations", ar: "نائب رئيس لجنة العمليات" },
           committee: { en: "Operations Committee", ar: "لجنة العمليات" },
           studies: { en: "Suez Canal University", ar: "جامعة قناة السويس" },
@@ -243,7 +243,7 @@ export const appData = {
         {
           id: "RLY-M012",
           infoId: "RLY-I012",
-          name: { en: "Member 12", ar: "عضو ١٢" },
+          name: { en: "Vice Head of Operations", ar: "نائب رئيس لجنة العمليات" },
           title: { en: "Vice Head of Operations", ar: "نائب رئيس لجنة العمليات" },
           committee: { en: "Operations Committee", ar: "لجنة العمليات" },
           studies: { en: "Suez Canal University", ar: "جامعة قناة السويس" },
@@ -335,13 +335,13 @@ export const appData = {
         {
           id: "RLY-M018",
           infoId: "RLY-I018",
-          name: { en: "Board Member 03", ar: "عضو الإدارة ٣" },
+          name: { en: "Afnan Barakat", ar: "افنان بركات" },
           title: { en: "Coordinator", ar: "المنسق" },
           committee: { en: "Administration", ar: "الإدارة" },
           studies: { en: "", ar: "" },
           interests: { en: "", ar: "" },
           bio: { en: "", ar: "" },
-          image: "assets/people/manager-03.svg",
+          image: "assets/people/Afnan-Barakat-as-Coordinator.png",
           contactUrl: "mailto:ahmedbinsalama@example.com"
         }
       ]
